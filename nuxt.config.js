@@ -23,7 +23,9 @@ export default {
       { hid: 'description', name: 'description', content: 'App de notas, con operaciones basicas CRUD' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: '/css/font/font.css' },
+      { rel: 'stylesheet', href: '/css/icons/css/all.css' }
     ]
   },
   /*

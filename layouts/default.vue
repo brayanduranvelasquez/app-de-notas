@@ -13,7 +13,8 @@
   }
 
   html {
-    background: rgb(245, 245, 245);
+    background: rgb(253, 253, 253);
+    font-family: 'Lato';
   }
 
 </style>
