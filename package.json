@@ -1,0 +1,20 @@
+{
+  "name": "app-de-notas",
+  "version": "1.0.0",
+  "author": "Brayan Duran Velasquez",
+  "description": "App de notas, con operaciones basicas CRUD",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "generate": "nuxt build && nuxt export"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
+    "nuxt": "^2.13.0"
+  },
+  "devDependencies": {}
+}
