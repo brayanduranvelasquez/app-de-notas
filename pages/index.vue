@@ -50,12 +50,15 @@
     background: #fff;
     margin: auto;
     font-size: 16px;
+    margin-top: 75px;
 
     &__encabezado {
       padding: 12px 16px;
-      margin-bottom: 15px;
       width: 100%;
-      border-bottom: 1px solid rgb(65, 65, 65);
+      box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
+      position: fixed;
+      top: 0;
+      background: white;
 
       p {
         display: inline-block;
@@ -66,6 +69,9 @@
 
     &__contenido {
       padding: 0px 15px;
+      margin: auto;
+      width: 100%;
+      max-width: 750px;
 
       &-acciones {
 
@@ -75,6 +81,7 @@
           button {
             background: rgb(219, 219, 219);
             font-size: 18px;
+            font-weight: 500;
             outline: none;
             width: 80%;
             padding: 8px 0px;
