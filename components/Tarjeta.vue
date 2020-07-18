@@ -1,25 +1,25 @@
 <template>
     <div class="tarjeta">
-        <div class="tarjeta__encabezado" @click="verNota">
-            <p>Esto es el encabezado</p>
+        <div class="tarjeta__contenido" @click="VerNota">
+            <div class="tarjeta__contenido-encabezado">
+                <p>{{ encabezado }}</p>
+            </div>
+            <div class="tarjeta__contenido-cuerpo">
+                {{ DescripcionCorta }} <!-- computed -->
+            </div> 
+            <div class="tarjeta__contenido-pie">
+                <i class="fa fa-clock"></i><p> {{ pie }} </p>
+            </div>
         </div>
-        <div class="tarjeta__cuerpo" @click="verNota">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil repellendus obcaecati, fuga ut unde doloremque saepe accusamus perferendis esse rerum ad voluptatibus? Est quasi quia totam quam quidem consequuntur!
-        </div>
+
         <div class="tarjeta__acciones">
-            <div class="tarjeta__acciones-editar" @click="editarNota">
-                <p> <i class="fa fa-pen"></i> Editar</p>
+            <div class="tarjeta__acciones-editar" @click="EditarNota">
+                <i class="fa fa-pen"></i><p>Editar</p>
             </div>
 
-            <div class="tarjeta__acciones-eliminar" @click="eliminarNota">
-                <p> <i class="fa fa-trash"></i> Eliminar</p>
+            <div class="tarjeta__acciones-eliminar" @click="EliminarNota">
+                <i class="fa fa-trash"></i><p>Eliminar</p>
             </div>
-        </div>
-        <div class="tarjeta__pie" @click="verNota">
-            <p style="color: #888">
-                 <i class="fa fa-clock" style="color: #888"></i>
-                 17 / 07 / 2020
-            </p>
         </div>
     </div>
 </template>
@@ -27,14 +27,27 @@
 <script>
     export default {
         name: 'Tarjeta',
+        data(){
+            return {
+                encabezado: 'Esto es el encabezado',
+                descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil repellendus obcaecati, fuga ut unde doloremque saepe accusamus perferendis esse rerum ad voluptatibus? Est quasi quia totam quam quidem consequuntur!',
+                pie: '17 / 07 / 2020'
+            }
+        },
+        computed: {
+            DescripcionCorta(){
+                let descripcion = this.descripcion;
+                return descripcion.substring(0, 100) + "...";
+            }
+        },
         methods: {
-            verNota(){
+            VerNota(){
                 alert('Ver')
             },
-            editarNota(){
+            EditarNota(){
                 alert('Editar');
             },
-            eliminarNota(){
+            EliminarNota(){
                 alert('Eliminar')
             }
         }
@@ -42,47 +55,58 @@
 </script>
 
 <style lang="scss">
+    // Resolucion -> Dispositivos pequeños -> 320px de ancho
     
     .tarjeta {
+        font-size: 16px;
         border: 1px solid #ccc;
         border-radius: 5px;
         width: 100%;
         margin: 15px 0;
 
         display: grid;
-        grid-template-columns: 85% 15%;
+        grid-template-columns: 80% 20%;
         grid-template-areas: 
             "nota-encabezado acciones" 
             "nota-cuerpo acciones" 
             "nota-pie acciones";
-        transition: transform 1s;
 
             &:hover {
                 background: rgb(253, 253, 253);
                 cursor: pointer;
             }  
 
-        &__encabezado {
-            grid-area: nota-encabezado;
-            font-size: 24px;
-            font-weight: 600;
-            margin: 10px 12px;
-        }
+        &__contenido {
 
-        &__cuerpo {
-            grid-area: nota-cuerpo;
-            font-size: 16px;
-            margin: 6px 12px;
-            height: 40px;
-            overflow: hidden;
+            &-encabezado {
+                grid-area: nota-encabezado;
+                font-size: calc(1em + 4px);
+                font-weight: 600;
+                margin: 10px 12px;
+            }
 
-        }
+            &-cuerpo {
+                grid-area: nota-cuerpo;
+                font-size: 1em;
+                margin: 6px 12px;
+            }
 
-        &__pie {
-            grid-area: nota-pie;
-            text-align: right;
-            font-size: 14px;
-            margin: 6px 12px;
+            &-pie {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                grid-area: nota-pie;
+                text-align: right;
+                font-size: calc(1em - 4px);
+                margin: 6px 12px;
+
+                p, i {
+                    text-align: right;
+                    margin-left: 3px;
+                    color: #888;
+                }
+            }
         }
 
         &__acciones {
@@ -92,14 +116,15 @@
             flex-wrap: wrap;
             align-items: center;
             justify-content: center;
+            flex-direction: column;
             text-align: center;
-
 
             &-editar, &-eliminar {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 flex-wrap: wrap;
+                flex-direction: column;
 
                 height: 50%;
                 box-sizing: border-box;
@@ -108,6 +133,7 @@
                 
                 i, p {
                     color: #888;
+                    font-size: calc(1em - 2px);
                 }
 
                 &:hover {
@@ -115,6 +141,9 @@
                     cursor: pointer;
                 }
 
+                &:active {
+                    background: rgb(221, 221, 221);
+                }
                 
             }
         }

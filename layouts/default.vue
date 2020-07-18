@@ -13,7 +13,7 @@
   }
 
   html {
-    background: rgb(253, 253, 253);
+    background: #fff;
     font-family: 'Lato';
   }
 
