@@ -17,6 +17,7 @@
     <main class="agregar__contenido">
 
       <section class="agregar__contenido-formulario">
+
         <div class="formulario">
 
           <div class="formulario__grupo">
@@ -29,11 +30,12 @@
             <textarea placeholder="Agregue el contenido de su nueva nota"></textarea>
           </div>
 
-          <div class="formulario__boton">
-              <button><i class="fa fa-save"></i> Guardar la nota</button>
+          <div class="central">
+            <button class="boton boton--gris"><i class="fa fa-save"></i> Guardar la nota</button>
           </div>
-
+          
         </div>
+
       </section>
       
     </main>
@@ -56,11 +58,12 @@
 </script>
 
 <style lang="scss">
+  @import "@/assets/scss/_colores.scss";
   // Resolucion -> Dispositivos pequeños -> 320px de ancho
 
   .agregar {
     width: 100%;
-    background: #fff;
+    background: $color-blanco;
     margin: auto;
     font-size: 16px;
     margin-top: 75px;
@@ -70,7 +73,7 @@
       box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
       position: fixed;
       top: 0;
-      background: white;
+      background: $color-blanco;
       display: grid;
       grid-template-areas: "regresar titulo acciones";
       grid-template-columns: 50px 70% auto;
@@ -80,12 +83,12 @@
         padding: 12px 16px;
 
         &:hover {
-          background: rgb(219, 219, 219);
+          background: $color-gris-secundario;
           cursor: pointer;
         }
 
         &:active {
-          background: rgb(199, 199, 199);
+          background: $color-gris-terciario;
         }
 
         i {
@@ -117,11 +120,16 @@
           margin-right: 16px;
 
           &:hover {
-            color: rgb(141, 141, 141);
+            color: rgb(177, 177, 177);
             cursor: pointer;
+          }
+          
+          &:active {
+            color: rgb(129, 129, 129);
           }
         }
 
+        
       }
 
     }
@@ -131,98 +139,10 @@
       margin: auto;
       width: 100%;
       max-width: 750px;
+      margin-bottom: 25px;
     }
 
   } 
-
-  .formulario {
-    width: 100%;
-
-    &__grupo {
-      display: flex;
-      flex-direction: column;
-      margin-top: 18px;
-
-      label{
-        font-weight: 600;
-        font-size: calc(1em + 8px);
-      }
-
-      input {
-        font-size: calc(1em + 6px);
-        margin-top: 10px;
-        padding: 6px;
-        border: none;
-        outline: none;
-        border: 1px solid rgb(185, 185, 185);
-        border-radius: 5px;
-
-        &::placeholder {
-          color: rgb(196, 196, 196);
-          font-size: calc(1em - 2px);
-        }
-
-        &:hover, &:focus {
-          border: 1px solid rgb(136, 136, 136);
-        }
-      }
-
-      textarea {
-        border-radius: 5px;
-        font-size: calc(1em + 6px);
-        font-family: Arial;
-        margin-top: 10px;
-        margin-bottom: 12px;
-        outline: none;
-        padding: 6px;
-        width: 100%;
-        height: 70vh;
-
-        &::placeholder {
-          color: rgb(170, 170, 170);
-          font-size: calc(1em - 2px);
-          margin-left: 6px;
-        }
-
-        &:hover, &:focus {
-          border: 1px solid rgb(136, 136, 136);
-        }
-      }
-      
-    }
-
-    &__boton {
-      width: 100%;
-      text-align: center;
-      margin: 12px 0px;
-
-      button {
-        background: rgb(219, 219, 219);
-        font-size: 18px;
-        font-weight: 500;
-        outline: none;
-        width: 80%;
-        padding: 8px 0px;
-        border: none;
-        border-radius: 10px;
-        text-align: center;
-        color: rgb(94, 94, 94);
-
-          i {
-            color: rgb(102, 102, 102);
-          }
-
-          &:hover {
-            background: rgb(209, 209, 209);
-            cursor: pointer;
-          }
-
-          &:active {
-            background: rgb(196, 196, 196);
-          }
-          
-        }
-      }
-    }
+  
 
 </style>

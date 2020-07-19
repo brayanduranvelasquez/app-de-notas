@@ -9,8 +9,8 @@
     <main class="inicio__contenido">
 
       <section class="inicio__contenido-acciones"> 
-        <article class="inicio__contenido-acciones-agregar" @click="IrA('/agregar-nota')">
-          <button> <i class="fa fa-plus"></i> Agregar Nueva Nota </button>
+        <article class="inicio__contenido-acciones-agregar central" @click="IrA('/agregar-nota')">
+          <button class="boton boton--gris"> <i class="fa fa-plus"></i> Agregar Nueva Nota </button>
         </article> 
       </section>
 
@@ -50,11 +50,12 @@
 </script>
 
 <style lang="scss">
+  @import "@/assets/scss/_colores.scss";
   // Resolucion -> Dispositivos pequeños -> 320px de ancho
 
   .inicio {
     width: 100%;
-    background: #fff;
+    background: $color-blanco;
     margin: auto;
     font-size: 16px;
     margin-top: 75px;
@@ -64,7 +65,7 @@
       box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
       position: fixed;
       top: 0;
-      background: white;
+      background: $color-blanco;
       display: grid;
       grid-template-areas: "titulo";
       grid-template-columns: auto;
@@ -88,40 +89,6 @@
       width: 100%;
       max-width: 750px;
 
-      &-acciones {
-
-        &-agregar {
-          text-align: center;
-
-          button {
-            background: rgb(219, 219, 219);
-            font-size: 18px;
-            font-weight: 500;
-            outline: none;
-            width: 80%;
-            padding: 8px 0px;
-            border: none;
-            border-radius: 10px;
-            text-align: center;
-            color: rgb(94, 94, 94);
-
-            i {
-               color: rgb(102, 102, 102);
-            }
-
-            &:hover {
-              background: rgb(209, 209, 209);
-              cursor: pointer;
-            }
-
-            &:active {
-              background: rgb(196, 196, 196);
-            }
-          }
-          
-        }
-      }
-
       &-notas {
         &-vacio {
           width: 100%;
@@ -133,13 +100,13 @@
           flex-direction: column;
 
           i {
-            color: rgb(196, 196, 196);
+            color: $color-gris-secundario;
             font-size: calc(1em + 40px);
             margin-bottom: 4px;
           }
 
           p {
-            color: rgb(196, 196, 196);
+            color: $color-gris-secundario;
             font-size: calc(1em + 7px);
             text-align: center;
           }

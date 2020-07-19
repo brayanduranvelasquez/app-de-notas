@@ -55,11 +55,12 @@
 </script>
 
 <style lang="scss">
+    @import "@/assets/scss/_colores.scss";
     // Resolucion -> Dispositivos pequeños -> 320px de ancho
     
     .tarjeta {
         font-size: 16px;
-        border: 1px solid #ccc;
+        border: 1px solid $color-gris;
         border-radius: 5px;
         width: 100%;
         margin: 15px 0;
@@ -104,7 +105,7 @@
                 p, i {
                     text-align: right;
                     margin-left: 3px;
-                    color: #888;
+                    color: rgb(160, 160, 160);
                 }
             }
         }
@@ -129,7 +130,7 @@
                 height: 50%;
                 box-sizing: border-box;
                 width: 100%;
-                border-bottom: 1px solid #ccc;
+                border-bottom: 1px solid $color-gris;
                 
                 i, p {
                     color: #888;
@@ -137,12 +138,12 @@
                 }
 
                 &:hover {
-                    background: rgb(235, 235, 235);
+                    background: rgb(226, 226, 226);
                     cursor: pointer;
                 }
 
                 &:active {
-                    background: rgb(221, 221, 221);
+                    background: rgb(211, 211, 211);
                 }
                 
             }
