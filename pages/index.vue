@@ -1,7 +1,9 @@
 <template>
   <div class="inicio">
     <header class="inicio__encabezado">
-      <p>Notas</p>
+      <div class="inicio__encabezado-titulo">
+        <p>Notas</p>
+      </div>
     </header>
 
     <main class="inicio__contenido">
@@ -58,16 +60,24 @@
     margin-top: 75px;
 
     &__encabezado {
-      padding: 12px 16px;
       width: 100%;
       box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
       position: fixed;
       top: 0;
       background: white;
+      display: grid;
+      grid-template-areas: "titulo";
+      grid-template-columns: auto;
 
-      p {
-        display: inline-block;
-        font-size: calc(1em + 10px);
+      &-titulo {
+        grid-area: titulo;
+        padding: 12px 0px;
+
+          p {
+            font-size: calc(1em + 5px);
+            margin-left: 12px;
+          }
+
       }
 
     }
