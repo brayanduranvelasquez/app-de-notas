@@ -7,7 +7,7 @@
     <main class="inicio__contenido">
 
       <section class="inicio__contenido-acciones"> 
-        <article class="inicio__contenido-acciones-agregar">
+        <article class="inicio__contenido-acciones-agregar" @click="IrA('/agregar-nota')">
           <button> <i class="fa fa-plus"></i> Agregar Nueva Nota </button>
         </article> 
       </section>
@@ -38,6 +38,11 @@
     },
     components: {
       Tarjeta
+    },
+    methods: {
+      IrA(ruta){
+        this.$router.push(ruta);
+      }
     }
   }
 </script>
