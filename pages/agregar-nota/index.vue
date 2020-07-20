@@ -147,8 +147,35 @@
 
         else if (!this.inputTituloError && titulo.length > 0 &&
                  !this.inputNota && nota.length > 0) {
-                   alert("guardar la nota")
-                 }
+                  // Si no existe ningun error, y hay contenido en el campo Titulo y en Textarea, se prosigue a guardar.
+                  
+                  // Se extraen los datos almacenados
+                  let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
+
+                  if(notasGuardadas == null) {
+                    // Si esta vacio, quiere decir que no existian notas. Y alli, es donde se hace la utilidad de un arreglo de objetos. Para que cuando se agregue otra nota, se vayan agregando a este arreglo. EL cual sera almacenado en el localStorage
+
+                    // Se crea arreglo de objeto. 
+                    let nuevaNota = [{ titulo: this.titulo, nota: this.nota }];
+
+                    localStorage.setItem('notas', JSON.stringify(nuevaNota))
+                    alert("1era Nota guardada");
+                  }
+                  
+                  else {
+                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al arreglo de objetos anteriormente creado.
+
+                    notasGuardadas.push({
+                      titulo: this.titulo,
+                      nota: this.nota
+                    })  
+
+                    // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva nota agregada al array de objetos
+                    localStorage.setItem('notas', JSON.stringify(notasGuardadas))
+
+                  }
+                   
+                }
 
       },
     },
