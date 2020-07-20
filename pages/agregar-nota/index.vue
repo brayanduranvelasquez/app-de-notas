@@ -10,34 +10,62 @@
       </div>
 
       <div class="agregar__encabezado-acciones">
-        <i class="fa fa-save"></i>
+        <i class="fa fa-save" @click="GuardarNota"></i>
       </div>
     </header>
 
     <main class="agregar__contenido">
-
       <section class="agregar__contenido-formulario">
 
         <div class="formulario">
 
           <div class="formulario__grupo">
-            <label for="titulo">Título:</label>
-            <input type="text" placeholder="Titulo para la nota">
+            <label class="formulario__grupo-label" for="titulo">Título:</label>
+            <input
+              @keyup="verificandoInputTitulo"
+              class="formulario__grupo-input" 
+              type="text" 
+              placeholder="Titulo para la nota" 
+              id="inputTitulo"
+              :class="{'formulario__grupo-input--error' : inputTituloError}"
+              v-model="titulo" 
+            >
+ 
+            <template v-if="inputTituloError">
+              <div class="formulario__grupo-mensaje">Entre 1 a 30 caracteres</div>
+            </template>
           </div>
 
           <div class="formulario__grupo">
-            <label for="descripcion">Nota:</label>
-            <textarea placeholder="Agregue el contenido de su nueva nota"></textarea>
+            <label class="formulario__grupo-label" for="descripcion">Nota:</label>
+
+            <div 
+              style="text-align: right" 
+              :class="{'formulario__grupo-mensaje' : inputNotaError}"
+            >
+              {{ tamanoLetrasEnInputNota }}
+            </div>
+            
+            <textarea 
+              @keyup="verificandoInputNota"
+              class="formulario__grupo-textarea" 
+              placeholder="Agregue el contenido de su nueva nota" 
+              id="inputDescripcion"
+              :class="{'formulario__grupo-textarea--error' : inputNotaError}"
+              v-model="nota" 
+            >
+            </textarea>
           </div>
 
           <div class="central">
-            <button class="boton boton--gris"><i class="fa fa-save"></i> Guardar la nota</button>
+            <button class="boton boton--gris" @click="GuardarNota">
+              <i class="fa fa-save"></i> Guardar la nota
+            </button>
           </div>
-          
+  
         </div>
 
       </section>
-      
     </main>
   </div>
 </template>
@@ -48,9 +76,86 @@
     head: {
       title: 'Agregar nueva nota'
     },
+
+    data(){
+      return {
+        titulo: '', // Todo el texto que este en el input para el titulo de la nota
+        inputTituloError: false, // Para poder mostrar un mensaje de error, debe estar en true
+
+        nota: '', // Todo el texto que este en el input para la nota a guardar
+        inputNotaError: false,
+      }
+    },
+
     methods: {
       IrA(ruta){
         this.$router.push(ruta);
+      },
+      
+      verificandoInputTitulo(){
+        let titulo = this.titulo.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
+
+        if(titulo.length >= 0 && titulo.length <= 30) {
+          this.inputTituloError = false;
+        }
+
+        else if(titulo.length > 30) {
+          this.inputTituloError = true; // Muestra el mensaje de error, comunicando que supera limite
+        }
+      },
+
+      verificandoInputNota(){
+        let nota = this.nota.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
+
+        if(nota.length >= 0 && nota.length <= 1000) {
+          this.inputNotaError = false;
+        }
+
+        else if(nota.length > 1000) {
+          this.inputNotaError = true; // Muestra el mensaje de error, comunicando que supera limite
+        }
+      },
+
+      GuardarNota() {
+        let inputTitulo = document.getElementById('inputTitulo');
+        let inputNota = document.getElementById('inputTitulo');
+        // Estas variables seran de utilizada para enfocar el input, si los input contienen errores de superar los limites, o estar vacios.
+
+        let titulo = this.titulo.trim();
+        let nota = this.nota;
+        // Y estas variable, la primera guardará el valor del titulo sin espacios a la izquierda ni derecha, y la segunda solo de lo que contenta el textarea correspondiente a la nota
+
+        if(titulo == ''){
+          inputTitulo.focus();
+          alert('No existe un titulo para la nota')
+        }
+
+        else if(this.inputTituloError){
+          inputTitulo.focus();
+          alert('Excede los limites para el titulo de la nota')
+        }
+
+        else if(nota == ''){
+          inputNota.focus();
+          alert('No escribió ninguna nota a guardar')
+        }
+
+        else if(this.inputNotaError){
+          inputNota.focus();
+          alert('Excede los limites para la nota a guardar')
+        }
+
+        else if (!this.inputTituloError && titulo.length > 0 &&
+                 !this.inputNota && nota.length > 0) {
+                   alert("guardar la nota")
+                 }
+
+      },
+    },
+
+    computed: {
+      tamanoLetrasEnInputNota() {
+        return this.nota.length + " / 1000"
       }
     }
   }
