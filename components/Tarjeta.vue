@@ -2,13 +2,13 @@
     <div class="tarjeta">
         <div class="tarjeta__contenido" @click="VerNota">
             <div class="tarjeta__contenido-encabezado">
-                <p>{{ encabezado }}</p>
+                <p>{{ titulo }}</p>
             </div>
             <div class="tarjeta__contenido-cuerpo">
-                {{ DescripcionCorta }} <!-- computed -->
+                {{ NotaCorta }} <!-- computed -->
             </div> 
             <div class="tarjeta__contenido-pie">
-                <i class="fa fa-clock"></i><p> {{ pie }} </p>
+                <i class="fa fa-clock"></i><p> {{ creacionDia }} / {{ creacionMes }} / {{ creacionAno }} </p>
             </div>
         </div>
 
@@ -27,17 +27,27 @@
 <script>
     export default {
         name: 'Tarjeta',
-        data(){
-            return {
-                encabezado: 'Esto es el encabezado',
-                descripcion: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias nihil repellendus obcaecati, fuga ut unde doloremque saepe accusamus perferendis esse rerum ad voluptatibus? Est quasi quia totam quam quidem consequuntur!',
-                pie: '17 / 07 / 2020'
-            }
+        props: {
+            titulo: String,
+            nota: String,
+            id: Number,
+
+            creacionDia: Number,
+            creacionMes: Number,
+            creacionAno: Number,
         },
         computed: {
-            DescripcionCorta(){
-                let descripcion = this.descripcion;
-                return descripcion.substring(0, 100) + "...";
+            NotaCorta(){
+                let nota = this.nota;
+
+                if(nota.length > 100){
+                    return nota.substring(0, 100) + "...";
+                } 
+
+                else {
+                    return nota;
+                }
+                
             }
         },
         methods: {
@@ -84,12 +94,14 @@
                 font-size: calc(1em + 4px);
                 font-weight: 600;
                 margin: 10px 12px;
+                word-break: break-all;
             }
 
             &-cuerpo {
                 grid-area: nota-cuerpo;
                 font-size: 1em;
                 margin: 6px 12px;
+                word-break: break-all;
             }
 
             &-pie {
@@ -101,6 +113,7 @@
                 text-align: right;
                 font-size: calc(1em - 4px);
                 margin: 6px 12px;
+                word-break: break-all;
 
                 p, i {
                     text-align: right;

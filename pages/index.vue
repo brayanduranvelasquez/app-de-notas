@@ -15,15 +15,33 @@
       </section>
 
       <section class="inicio__contenido-notas">
-        <!-- <article class="inicio__contenido-notas-vacio">
-          <i class="fa fa-pen"></i>
-          <p>No hay notas guardadas hasta ahora.</p>
-        </article> -->
 
         <article class="inicio__contenido-notas-guardadas">
-          <tarjeta></tarjeta>
-          <tarjeta></tarjeta>
-          <tarjeta></tarjeta>
+          <template v-if="notasGuardadas == null">
+
+            <article class="inicio__contenido-notas-vacio">
+              <i class="fa fa-pen"></i>
+              <p>No hay notas guardadas hasta ahora.</p>
+            </article>
+
+          </template>
+
+          <template v-else>
+
+            <div v-for="(item, index) of notasGuardadas" :key="index">
+              <tarjeta
+                :titulo="item.titulo"
+                :nota="item.nota"
+                :id="index"
+
+                :creacionDia="item.creacion.dia"
+                :creacionMes="item.creacion.mes"
+                :creacionAno="item.creacion.año"
+              >
+              </tarjeta>
+            </div>
+
+          </template>
         </article>
 
       </section>
@@ -41,10 +59,30 @@
     components: {
       Tarjeta
     },
+
+    data(){
+      return {
+        notasGuardadas: null
+      }
+    },
+
     methods: {
       IrA(ruta){
         this.$router.push(ruta);
       }
+    },
+
+    mounted(){
+      let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
+
+      if(notasGuardadas == null){
+        this.notasGuardadas = null;
+      } 
+      
+      else {
+        this.notasGuardadas = notasGuardadas;
+      }
+      
     }
   }
 </script>
