@@ -148,30 +148,66 @@
         else if (!this.inputTituloError && titulo.length > 0 &&
                  !this.inputNota && nota.length > 0) {
                   // Si no existe ningun error, y hay contenido en el campo Titulo y en Textarea, se prosigue a guardar.
-                  
+
+                  // Se registrara el momento en que se creó la nota
+                  let fecha = new Date;
+
+                  let diaF = fecha.getDate();
+                  let mesF = 1 + fecha.getMonth(); // +1 porque empieza desde Enero = 0
+                  let añoF = fecha.getFullYear();
+
+                  let horaF = fecha.getHours();
+                  let minutosF = fecha.getMinutes();
+                  let segundosF = fecha.getSeconds();
+
+                  // Se crea un objeto que contendra los datos de la nota
+                  let nuevaNota = 
+                    { 
+                      titulo: this.titulo,
+                      nota: this.nota,
+
+                      creacion: {
+                        dia: diaF,
+                        mes: mesF,
+                        año: añoF,
+                        hora: horaF,
+                        minuto: minutosF,
+                        segundo: segundosF
+                      },
+
+                      modificacion: {
+                        dia: null,
+                        mes: null,
+                        año: null,
+                        hora: null,
+                        minuto: null,
+                        segundo: null
+                      }  
+                    };
+
                   // Se extraen los datos almacenados
                   let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
 
                   if(notasGuardadas == null) {
-                    // Si esta vacio, quiere decir que no existian notas. Y alli, es donde se hace la utilidad de un arreglo de objetos. Para que cuando se agregue otra nota, se vayan agregando a este arreglo. EL cual sera almacenado en el localStorage
+                    // Si esta vacio, quiere decir que no existian notas. Y alli, es donde se hace la utilidad un arreglo de objetos. Para que cuando se agregue otra nota, se vayan agregando a este arreglo. El cual sera almacenado en el localStorage
+                    let arreglo = [nuevaNota];
 
-                    // Se crea arreglo de objeto. 
-                    let nuevaNota = [{ titulo: this.titulo, nota: this.nota }];
-
-                    localStorage.setItem('notas', JSON.stringify(nuevaNota))
+                    // Y ahora, se guarda el valor en el localStorage
+                    localStorage.setItem('notas', JSON.stringify(arreglo ))
                     alert("1era Nota guardada");
+
+                    this.IrA('/'); // Redireccionar a la vista inicial
                   }
                   
                   else {
-                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al arreglo de objetos anteriormente creado.
+                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al arreglo de objetos anteriormente creado de la extraccion del localStorage
 
-                    notasGuardadas.push({
-                      titulo: this.titulo,
-                      nota: this.nota
-                    })  
+                    notasGuardadas.push(nuevaNota);  
 
                     // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva nota agregada al array de objetos
-                    localStorage.setItem('notas', JSON.stringify(notasGuardadas))
+                    localStorage.setItem('notas', JSON.stringify(notasGuardadas));
+
+                    this.IrA('/'); // Redireccionar a la vista inicial
 
                   }
                    
