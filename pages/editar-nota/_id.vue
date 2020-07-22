@@ -14,58 +14,60 @@
       </div>
     </header>
 
-    <main class="editar__contenido">
-      <section class="editar__contenido-formulario">
+    <transition name="transicion-derecha" mode="out-in" appear>
+      <main class="editar__contenido">
+        <section class="editar__contenido-formulario">
 
-        <div class="formulario">
+          <div class="formulario">
 
-          <div class="formulario__grupo">
-            <label class="formulario__grupo-label" for="titulo">Título:</label>
-            <input
-              @keyup="verificandoInputTitulo"
-              class="formulario__grupo-input" 
-              type="text" 
-              placeholder="Titulo para la nota" 
-              id="inputTitulo"
-              :class="{'formulario__grupo-input--error' : inputTituloError}"
-              v-model="titulo" 
-            >
- 
-            <template v-if="inputTituloError">
-              <div class="formulario__grupo-mensaje">Entre 1 a 30 caracteres</div>
-            </template>
-          </div>
-
-          <div class="formulario__grupo">
-            <label class="formulario__grupo-label" for="descripcion">Nota:</label>
-
-            <div 
-              style="text-align: right" 
-              :class="{'formulario__grupo-mensaje' : inputNotaError}"
-            >
-              {{ tamanoLetrasEnInputNota }}
+            <div class="formulario__grupo">
+              <label class="formulario__grupo-label" for="titulo">Título:</label>
+              <input
+                @keyup="verificandoInputTitulo"
+                class="formulario__grupo-input" 
+                type="text" 
+                placeholder="Titulo para la nota" 
+                id="inputTitulo"
+                :class="{'formulario__grupo-input--error' : inputTituloError}"
+                v-model="titulo" 
+              >
+  
+              <template v-if="inputTituloError">
+                <div class="formulario__grupo-mensaje">Entre 1 a 30 caracteres</div>
+              </template>
             </div>
-            
-            <textarea 
-              @keyup="verificandoInputNota"
-              class="formulario__grupo-textarea" 
-              placeholder="Agregue el contenido para su nota" 
-              id="inputDescripcion"
-              :class="{'formulario__grupo-textarea--error' : inputNotaError}"
-              v-model="nota" 
-            >
-            </textarea>
+
+            <div class="formulario__grupo">
+              <label class="formulario__grupo-label" for="descripcion">Nota:</label>
+
+              <div 
+                style="text-align: right" 
+                :class="{'formulario__grupo-mensaje' : inputNotaError}"
+              >
+                {{ tamanoLetrasEnInputNota }}
+              </div>
+              
+              <textarea 
+                @keyup="verificandoInputNota"
+                class="formulario__grupo-textarea" 
+                placeholder="Agregue el contenido para su nota" 
+                id="inputDescripcion"
+                :class="{'formulario__grupo-textarea--error' : inputNotaError}"
+                v-model="nota" 
+              >
+              </textarea>
+            </div>
+
+            <div class="central">
+              <button class="boton boton--gris" @click="GuardarNota">
+                <i class="fa fa-save"></i> Guardar la nota
+              </button>
+            </div>
           </div>
 
-          <div class="central">
-            <button class="boton boton--gris" @click="GuardarNota">
-              <i class="fa fa-save"></i> Guardar la nota
-            </button>
-          </div>
-        </div>
-
-      </section>
-    </main>
+        </section>
+      </main>
+    </transition>
   </div>
 </template>
 

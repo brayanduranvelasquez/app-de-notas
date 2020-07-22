@@ -14,39 +14,41 @@
       </div>
     </header>
 
-    <main class="ver__contenido" v-if="nota">
-      <section class="ver__contenido-nota">
+    <transition name="transicion-derecha" mode="out-in" appear>
+      <main class="ver__contenido" v-if="nota">
+        <section class="ver__contenido-nota">
 
-        <div class="ver__contenido-nota-titulo">
-          Titulo: {{ nota.titulo }}
-        </div>
-
-        <div class="ver__contenido-nota-fechas">
-          <div>
-            Creada: {{ creacionNota }}
+          <div class="ver__contenido-nota-titulo">
+            Titulo: {{ nota.titulo }}
           </div>
 
-          <div v-if="modificada">
-            Ultima moficación: {{ modificacionNota }}
+          <div class="ver__contenido-nota-fechas">
+            <div>
+              Creada: {{ creacionNota }}
+            </div>
+
+            <div v-if="modificada">
+              Ultima moficación: {{ modificacionNota }}
+            </div>
           </div>
-        </div>
 
-        <div class="ver__contenido-nota-acciones">
-          <button class="boton boton--gris" @click="EditarNota">
-            <i class="fa fa-pen"></i> Editar nota
-          </button>
-          <button class="boton boton--gris" @click="EliminarNota">
-            <i class="fa fa-trash"></i> Eliminar nota
-          </button>
-          <button class="boton boton--gris">
-            <i class="fa fa-copy"></i> Copiar a portapapeles
-          </button>
-        </div>
+          <div class="ver__contenido-nota-acciones">
+            <button class="boton boton--gris" @click="EditarNota">
+              <i class="fa fa-pen"></i> Editar nota
+            </button>
+            <button class="boton boton--gris" @click="EliminarNota">
+              <i class="fa fa-trash"></i> Eliminar nota
+            </button>
+            <button class="boton boton--gris">
+              <i class="fa fa-copy"></i> Copiar a portapapeles
+            </button>
+          </div>
 
-        <div class="ver__contenido-nota-detalle">{{ this.nota.nota }}</div>
+          <div class="ver__contenido-nota-detalle">{{ this.nota.nota }}</div>
 
-      </section>
-    </main>
+        </section>
+      </main>
+    </transition>
   </div>
 </template>
 
