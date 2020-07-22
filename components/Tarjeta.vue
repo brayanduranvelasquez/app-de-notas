@@ -58,7 +58,7 @@
                 this.$router.push(`/editar-nota/${this.id}`);
             },
             EliminarNota(){
-                alert('Eliminar')
+                this.$router.push(`/eliminar-nota/${this.id}`);
             }
         }
     }
