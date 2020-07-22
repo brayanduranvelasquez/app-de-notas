@@ -52,7 +52,7 @@
         },
         methods: {
             VerNota(){
-                alert('Ver')
+                this.$router.push(`/ver-nota/${this.id}`);
             },
             EditarNota(){
                 this.$router.push(`/editar-nota/${this.id}`);
