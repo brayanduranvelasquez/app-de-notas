@@ -1,5 +1,6 @@
-@import 'styles-formulario';
-@import 'styles-boton';
+@import 'estilos-formulario';
+@import 'estilos-boton';
+@import 'transicion';
 
 .central {
     @extend %flex-center;
