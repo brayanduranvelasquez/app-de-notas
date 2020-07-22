@@ -55,7 +55,7 @@
                 alert('Ver')
             },
             EditarNota(){
-                alert('Editar');
+                this.$router.push(`/editar-nota/${this.id}`);
             },
             EliminarNota(){
                 alert('Eliminar')
