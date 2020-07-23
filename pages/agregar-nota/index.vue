@@ -1,8 +1,7 @@
 <template>
-
-    <div class="agregar">
+  <div class="agregar">
       <header class="agregar__encabezado">
-        <div class="agregar__encabezado-regresar" @click="IrA('/')">
+        <div class="agregar__encabezado-regresar" @click="Regresar()">
           <i class="fa fa-arrow-left"></i>
         </div>
         
@@ -73,12 +72,13 @@
 
        </transition>
     </div>
-
 </template>
 
 <script>
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
 
     head: {
       title: 'Agregar nueva nota'
@@ -95,10 +95,6 @@
     },
 
     methods: {
-      IrA(ruta){
-        this.$router.push(ruta);
-      },
-      
       verificandoInputTitulo(){
         let titulo = this.titulo.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
 

@@ -5,13 +5,15 @@
 
 
 <script>
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
     head: {
       title: ''
     },
 
-    beforeCreate() {
+    mounted() {
       // Se extraen las notas y se utiliza JSON.parse para poder manipular el arreglo de objetos
       let localNotas = localStorage.getItem('notas');
       let notas = JSON.parse(localNotas);
@@ -25,15 +27,15 @@
       } 
 
       else {
-      // Se utiliza JSON.stringify para convertir todo el arreglo de objetos, a cadena de texto
-      let notaEliminada = JSON.stringify(notas);
+        // Se utiliza JSON.stringify para convertir todo el arreglo de objetos, a cadena de texto
+        let notaEliminada = JSON.stringify(notas);
 
-      // Se guarda en el localStorage
-      localStorage.setItem('notas', notaEliminada);
+        // Se guarda en el localStorage
+        localStorage.setItem('notas', notaEliminada);
       }
 
       // Y ahora, solo se redirecciona
-      this.$router.push('/');
+      this.IrA('/');
     }
   }
 

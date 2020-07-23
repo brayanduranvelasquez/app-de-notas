@@ -4,16 +4,18 @@
 </template>
 
 <script>
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
     head: {
       title: ''
     },
 
-    beforeCreate() {
+    mounted() {
       // Ya que para poder editar una nota, se necesita de su indice (id), al entrar en el index, solo redireccionara al inicio
 
-      this.$router.push('/');
+      this.IrA('/');
     }
   }
 

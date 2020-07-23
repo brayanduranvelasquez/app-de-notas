@@ -1,7 +1,7 @@
 <template>
   <div class="ver">
     <header class="ver__encabezado">
-      <div class="ver__encabezado-regresar" @click="IrA('/')">
+      <div class="ver__encabezado-regresar" @click="Regresar()">
         <i class="fa fa-arrow-left"></i>
       </div>
       
@@ -53,8 +53,10 @@
 </template>
 
 <script>
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
     head: {
       title: 'Nota'
     },
@@ -67,18 +69,17 @@
     },
 
     methods: {
-      IrA(ruta){
-        this.$router.push(ruta);
-      },
+
       EditarNota(){
-        this.$router.push(`/editar-nota/${this.$route.params.id}`);
+        this.IrA(`/editar-nota/${this.$route.params.id}`);
       },
       EliminarNota(){
-        this.$router.push(`/eliminar-nota/${this.$route.params.id}`);
+        this.IrA(`/eliminar-nota/${this.$route.params.id}`);
       },
     },
 
     computed: {
+
       creacionNota(){
         return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - A las ${this.nota.creacion.hora} horas con ${this.nota.creacion.minuto} minutos.`
       },

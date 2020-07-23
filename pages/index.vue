@@ -54,11 +54,15 @@
 
 <script>
   import Tarjeta from "@/components/Tarjeta.vue";
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
+    
     head: {
       title: 'Notas'
     },
+
     components: {
       Tarjeta
     },
@@ -66,12 +70,6 @@
     data(){
       return {
         notasGuardadas: null
-      }
-    },
-
-    methods: {
-      IrA(ruta){
-        this.$router.push(ruta);
       }
     },
 

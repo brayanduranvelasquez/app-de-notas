@@ -1,7 +1,7 @@
 <template>
   <div class="editar">
     <header class="editar__encabezado">
-      <div class="editar__encabezado-regresar" @click="IrA('/')">
+      <div class="editar__encabezado-regresar" @click="Regresar()">
         <i class="fa fa-arrow-left"></i>
       </div>
       
@@ -72,8 +72,11 @@
 </template>
 
 <script>
+  import navegacion from "@/mixins/navegacion.js";
 
   export default {
+    mixins: [navegacion],
+
     head: {
       title: 'Editando Nota'
     },
@@ -89,9 +92,6 @@
     },
 
     methods: {
-      IrA(ruta){
-        this.$router.push(ruta);
-      },
       
       verificandoInputTitulo(){
         let titulo = this.titulo.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
@@ -180,7 +180,7 @@
                   // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva editada en el arreglo de objetos
                   localStorage.setItem('notas', JSON.stringify(notasGuardadas));
 
-                  this.IrA('/'); // Redireccionar a la vista inicial
+                   this.Regresar(); // Redireccionar a la pagina anterior.
 
                   }
                    

@@ -25,7 +25,10 @@
 </template>
 
 <script>
-    export default {
+  import navegacion from "@/mixins/navegacion.js";
+
+  export default {
+    mixins: [navegacion],
         name: 'Tarjeta',
         props: {
             titulo: String,
@@ -52,13 +55,13 @@
         },
         methods: {
             VerNota(){
-                this.$router.push(`/ver-nota/${this.id}`);
+                this.IrA(`/ver-nota/${this.id}`);
             },
             EditarNota(){
-                this.$router.push(`/editar-nota/${this.id}`);
+                this.IrA(`/editar-nota/${this.id}`);
             },
             EliminarNota(){
-                this.$router.push(`/eliminar-nota/${this.id}`);
+                this.IrA(`/eliminar-nota/${this.id}`);
             }
         }
     }
