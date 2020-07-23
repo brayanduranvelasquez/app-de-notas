@@ -29,7 +29,10 @@
 
             <template v-else>
 
-              <div v-for="(item, index) of notasGuardadas" :key="index">
+              <div v-for="(item, index) of notasGuardadas" :key="index" @click="CargarNotas">
+
+                <!-- Este evento "CargarNotas" juega un papel muy importante, ya que si el usuario elimina una nota (tarjeta), automaticamente volvera a cargar las notas -->
+
                 <tarjeta
                   :titulo="item.titulo"
                   :nota="item.nota"
@@ -73,17 +76,22 @@
       }
     },
 
-    mounted(){
-      let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
+    methods: {
+      CargarNotas(){
+        let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
 
-      if(notasGuardadas == null){
-        this.notasGuardadas = null;
-      } 
-      
-      else {
-        this.notasGuardadas = notasGuardadas;
+        if(notasGuardadas == null){
+          this.notasGuardadas = null;
+        } 
+        
+        else {
+          this.notasGuardadas = notasGuardadas;
+        }
       }
-      
+    },
+
+    mounted(){
+      this.CargarNotas();
     }
   }
 </script>

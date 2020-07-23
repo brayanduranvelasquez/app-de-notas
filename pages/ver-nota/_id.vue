@@ -36,7 +36,7 @@
             <button class="boton boton--gris" @click="EditarNota">
               <i class="fa fa-pen"></i> Editar nota
             </button>
-            <button class="boton boton--gris" @click="EliminarNota">
+            <button class="boton boton--gris" @click="EliminandoNota">
               <i class="fa fa-trash"></i> Eliminar nota
             </button>
             <button class="boton boton--gris">
@@ -54,6 +54,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
+  import { mapMutations } from "vuex";
 
   export default {
     mixins: [navegacion],
@@ -69,17 +70,18 @@
     },
 
     methods: {
-
+      ...mapMutations(['EliminarNota']),
+      
       EditarNota(){
         this.IrA(`/editar-nota/${this.$route.params.id}`);
       },
-      EliminarNota(){
-        this.IrA(`/eliminar-nota/${this.$route.params.id}`);
+      EliminandoNota(){
+        this.EliminarNota(this.$route.params.id);
+        this.IrA('/');
       },
     },
 
     computed: {
-
       creacionNota(){
         return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - A las ${this.nota.creacion.hora} horas con ${this.nota.creacion.minuto} minutos.`
       },

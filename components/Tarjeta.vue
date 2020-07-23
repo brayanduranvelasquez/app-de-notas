@@ -17,7 +17,7 @@
                 <i class="fa fa-pen"></i><p>Editar</p>
             </div>
 
-            <div class="tarjeta__acciones-eliminar" @click="EliminarNota">
+            <div class="tarjeta__acciones-eliminar" @click="EliminandoNota">
                 <i class="fa fa-trash"></i><p>Eliminar</p>
             </div>
         </div>
@@ -26,10 +26,18 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
+  import { mapMutations } from "vuex";
 
   export default {
     mixins: [navegacion],
         name: 'Tarjeta',
+
+        data(){
+            return {
+                ver: true, // Si el usuario elimina la nota, pasa a ser false, y por ende, deja de verse esta Tarjeta.
+            }
+        },
+
         props: {
             titulo: String,
             nota: String,
@@ -39,6 +47,7 @@
             creacionMes: Number,
             creacionAno: Number,
         },
+
         computed: {
             NotaCorta(){
                 let nota = this.nota;
@@ -53,15 +62,18 @@
                 
             }
         },
+
         methods: {
+            ...mapMutations(['EliminarNota']),
+
             VerNota(){
                 this.IrA(`/ver-nota/${this.id}`);
             },
             EditarNota(){
                 this.IrA(`/editar-nota/${this.id}`);
             },
-            EliminarNota(){
-                this.IrA(`/eliminar-nota/${this.id}`);
+            EliminandoNota(){
+                this.EliminarNota(this.id);
             }
         }
     }
