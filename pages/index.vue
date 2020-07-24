@@ -58,6 +58,7 @@
 <script>
   import Tarjeta from "@/components/Tarjeta.vue";
   import navegacion from "@/mixins/navegacion.js";
+  import { mapState, mapMutations } from "vuex";
 
   export default {
     mixins: [navegacion],
@@ -70,23 +71,24 @@
       Tarjeta
     },
 
-    data(){
-      return {
-        notasGuardadas: null
-      }
-    },
-
     methods: {
+      ...mapMutations(['CargarNotasAlStore']),
+
       CargarNotas(){
         let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
 
-        if(notasGuardadas == null){
-          this.notasGuardadas = null;
+        if(notasGuardadas != null){
+          this.CargarNotasAlStore(notasGuardadas);
         } 
-        
-        else {
-          this.notasGuardadas = notasGuardadas;
-        }
+
+      }
+    },
+
+    computed: {
+      ...mapState(['notas']),
+
+      notasGuardadas(){
+        return this.notas
       }
     },
 
@@ -106,7 +108,6 @@
     background: $color-blanco;
     margin: auto;
     font-size: 16px;
-    margin-top: 75px;
 
     &__encabezado {
       width: 100%;
@@ -133,6 +134,7 @@
 
     &__contenido {
       padding: 0px 15px;
+      padding-top: 65px;
       margin: auto;
       width: 100%;
       max-width: 750px;

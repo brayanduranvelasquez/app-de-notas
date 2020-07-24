@@ -52,7 +52,7 @@
                   @keyup="verificandoInputNota"
                   class="formulario__grupo-textarea" 
                   placeholder="Agregue el contenido de su nueva nota" 
-                  id="inputDescripcion"
+                  id="inputNota"
                   :class="{'formulario__grupo-textarea--error' : inputNotaError}"
                   v-model="nota" 
                 >
@@ -127,7 +127,7 @@
 
       GuardarNota() {
         let inputTitulo = document.getElementById('inputTitulo');
-        let inputNota = document.getElementById('inputTitulo');
+        let inputNota = document.getElementById('inputNota');
         // Estas variables seran de utilizada para enfocar el input, si los input contienen errores de superar los limites, o estar vacios.
 
         let titulo = this.titulo.trim();
@@ -136,22 +136,26 @@
 
         if(titulo == ''){
           inputTitulo.focus();
-          alert('No existe un titulo para la nota')
+          window.scroll(0, 0);
+          alertify.error('No escribió un titulo para la nota');
         }
 
         else if(this.inputTituloError){
           inputTitulo.focus();
-          alert('Excede los limites para el titulo de la nota')
+          window.scroll(0, 0);
+          alertify.error('Excede los límites de caracteres para el titulo');
         }
 
         else if(nota == ''){
           inputNota.focus();
-          alert('No escribió ninguna nota a guardar')
+          window.scroll(0, 100);
+          alertify.error('No escribió la nota a guardar');
         }
 
         else if(this.inputNotaError){
           inputNota.focus();
-          alert('Excede los limites para la nota a guardar')
+          window.scroll(0, 100);
+          alertify.error('Excede los límites de caracteres permitidos');
         }
 
         else if (!this.inputTituloError && titulo.length > 0 &&
@@ -203,7 +207,6 @@
 
                     // Y ahora, se guarda el valor en el localStorage
                     localStorage.setItem('notas', JSON.stringify(arreglo ))
-                    alert("1era Nota guardada");
 
                     this.IrA('/'); // Redireccionar a la vista inicial
                   }
@@ -219,6 +222,8 @@
                     this.IrA('/'); // Redireccionar a la vista inicial
 
                   }
+
+                  alertify.success('Se ha guardado la nota');
                    
                 }
 

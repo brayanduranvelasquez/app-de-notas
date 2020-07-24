@@ -75,10 +75,34 @@
       EditarNota(){
         this.IrA(`/editar-nota/${this.$route.params.id}`);
       },
+
       EliminandoNota(){
-        this.EliminarNota(this.$route.params.id);
-        this.IrA('/');
-      },
+
+        // Class para las botones
+        alertify.defaults.theme.ok = "boton-alertify boton-alertify--positivo";
+        alertify.defaults.theme.cancel = "boton-alertify boton-alertify--negativo";
+
+        let mensaje = `
+          <span style="font-size: 18px; word-wrap: break-word;">
+              <b>¿Usted desea eliminar una nota?</b>
+              La nota está titulada como: <br><br> <b><i>"${this.nota.titulo}"</i></b>.
+          </span>`;
+
+        alertify.confirm(
+          'Eliminar', // Titulo
+          mensaje, // Mensaje
+          () => { 
+            this.EliminarNota(this.id); 
+            this.IrA('/');
+            alertify.success("Nota eliminada");
+          }, // Presionar que si
+          function(){} // Presionar que no
+        ).set('labels', { ok: 'Eliminar', cancel: 'Cancelar' })
+          .set('transition', 'fade')
+          .set('movable', false);
+
+      }      
+
     },
 
     computed: {
@@ -198,6 +222,7 @@
         &-titulo {
           font-size: calc(1em + 8px);
           font-weight: 600;
+          word-wrap: break-word;
         }
 
         &-fechas {
