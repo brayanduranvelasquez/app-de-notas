@@ -1,7 +1,7 @@
 <template>
   <div class="agregar">
       <header class="agregar__encabezado">
-        <div class="agregar__encabezado-regresar" @click="Regresar()">
+        <div class="agregar__encabezado-regresar" @click="Retroceder">
           <i class="fa fa-arrow-left"></i>
         </div>
         
@@ -91,12 +91,16 @@
 
         nota: '', // Todo el texto que este en el input para la nota a guardar
         inputNotaError: false,
+
+        seEscribio: false // Para a true cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar un mensaje
       }
     },
 
     methods: {
       verificandoInputTitulo(){
         let titulo = this.titulo.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
+
+        this.seEscribio = true;
 
         if(titulo.length >= 0 && titulo.length <= 30) {
           this.inputTituloError = false;
@@ -109,6 +113,8 @@
 
       verificandoInputNota(){
         let nota = this.nota.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
+
+        this.seEscribio = true;
 
         if(nota.length >= 0 && nota.length <= 1000) {
           this.inputNotaError = false;
@@ -217,6 +223,32 @@
                 }
 
       },
+
+      Retroceder(){
+        // Si se escribio algo en los inputs, mostrara la alerta. Sino, solo regresara a la pagina anterior..
+
+        if(this.seEscribio){
+
+          // Class para las botones
+          alertify.defaults.theme.ok = "boton-alertify boton-alertify--positivo";
+          alertify.defaults.theme.cancel = "boton-alertify boton-alertify--negativo";
+
+          alertify.confirm(
+            'Regresar', // Titulo
+            '<span style="font-size: 18px;"><b>¿Usted desea regresar?</b><br> Lo que ha escrito hasta ahora, no será guardado.</span>', // Mensaje
+            () => { this.Regresar() }, // Presionar que si
+            function(){} // Presionar que no
+          ).set('labels', { ok: 'Regresar', cancel: 'No' })
+           .set('transition', 'fade')
+           .set('movable', false);
+
+        } 
+
+        else {
+          this.Regresar(); // proviene del mixin
+        }
+        
+      }
     },
 
     computed: {
@@ -237,7 +269,6 @@
     background: $color-blanco;
     margin: auto;
     font-size: 16px;
-    margin-top: 75px;
 
     &__encabezado {
       width: 100%;
@@ -308,9 +339,13 @@
     &__contenido {
       padding: 0px 15px;
       margin: auto;
+      padding-top: 50px;
       width: 100%;
       max-width: 750px;
       margin-bottom: 25px;
+
+      // Las class de .formulario y .boton se encuentran en la carpeta assets/scss y estan registrados en el nuxt.config.js como "global CSS"
+
     }
 
   } 

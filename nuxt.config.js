@@ -24,15 +24,22 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      
       { rel: 'stylesheet', href: '/css/font/font.css' },
-      { rel: 'stylesheet', href: '/css/icons/css/all.css' }
+      { rel: 'stylesheet', href: '/css/icons/css/all.css' },
+
+      { rel: 'stylesheet', href: '/js/alertifyjs/alertify.min.css' },
+      { rel: 'stylesheet', href: '/js/alertifyjs/bootstrap.min.css' } // Tema para alertifyjs
+    ],
+    script: [ 
+      { src: '/js/alertifyjs/alertify.min.js' }
     ]
   },
   /*
   ** Global CSS
   */
   css: [
-    '@assets/scss/main.scss'
+    '@assets/scss/main.scss',
   ],
   /*
   ** Plugins to load before mounting the App
@@ -51,11 +58,14 @@ export default {
   buildModules: [
   ],
   /*
-  ** Nuxt.js modules
+  ** Nuxt.js bar loading
   */
   loading: {
     color: "blue",
   },
+  /*
+  ** Nuxt.js modules
+  */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
@@ -72,3 +82,4 @@ export default {
   build: {
   }
 }
+

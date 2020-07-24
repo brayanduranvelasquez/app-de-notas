@@ -1,0 +1,42 @@
+@import "colores";
+
+.boton-alertify {
+    font-size: 18px;
+    font-weight: 500;
+    outline: none;
+    min-width: 100px;
+    min-height: 35px;
+    padding: 8px 0px;
+    border: none;
+    border-radius: 8px;
+    text-align: center;
+
+    &--positivo {
+        background: $color-rojo;
+        color: $color-blanco;
+
+        &:hover {
+            background: $color-rojo-secundario;
+            cursor: pointer;
+        }
+
+        &:active {
+            background: $color-rojo-terciario;
+        }
+    }
+
+    &--negativo {
+        background: $color-gris;
+        color: $color-negro;
+
+        &:hover {
+            background: $color-gris-secundario;
+            cursor: pointer;
+        }
+
+        &:active {
+            background: $color-gris-terciario;
+        }
+    }
+
+}
