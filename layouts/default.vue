@@ -1,8 +1,36 @@
 <template>
   <div>
-    <Nuxt />
+    
+    <template v-if="!montado">
+      <carga-inicial />
+    </template>
+
+    <template v-else>
+      <Nuxt />
+    </template>
+    
   </div>
 </template>
+
+<script>
+  import CargaInicial from "@/components/CargaInicial.vue";
+
+  export default {
+    components: {
+      CargaInicial
+    },
+
+    data(){
+      return {
+        montado: false
+      }
+    },
+
+    mounted(){
+      this.montado = true;
+    }
+  }
+</script>
 
 <style>
   
