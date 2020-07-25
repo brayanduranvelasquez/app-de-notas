@@ -212,9 +212,9 @@
                   }
                   
                   else {
-                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al arreglo de objetos anteriormente creado de la extraccion del localStorage
+                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al principio arreglo de objetos anteriormente creado de la extraccion del localStorage
 
-                    notasGuardadas.push(nuevaNota);  
+                    notasGuardadas.unshift(nuevaNota);  
 
                     // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva nota agregada al array de objetos
                     localStorage.setItem('notas', JSON.stringify(notasGuardadas));

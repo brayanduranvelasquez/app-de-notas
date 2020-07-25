@@ -1,7 +1,7 @@
 <template>
   <div class="ver">
     <header class="ver__encabezado">
-      <div class="ver__encabezado-regresar" @click="Regresar()">
+      <div class="ver__encabezado-regresar" @click="IrA('/')">
         <i class="fa fa-arrow-left"></i>
       </div>
       
@@ -96,7 +96,7 @@
           'Eliminar', // Titulo
           mensaje, // Mensaje
           () => { 
-            this.EliminarNota(this.id); 
+            this.EliminarNota(this.$route.params.id); 
             this.IrA('/');
             alertify.success("Nota eliminada");
           }, // Presionar que si

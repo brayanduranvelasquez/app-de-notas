@@ -73,6 +73,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
+  import { mapMutations } from "vuex";
 
   export default {
     mixins: [navegacion],
@@ -94,6 +95,7 @@
     },
 
     methods: {
+      ...mapMutations(['CargarNotasAlStore']),
       
       verificandoInputTitulo(){
         let titulo = this.titulo.trim(); // Para guardar el valor sin espaciados al lado derecho e izquierdo
@@ -174,24 +176,47 @@
                   // Se extraen los datos almacenados
                   let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
 
-                  // Se modifica cada valor segun el parametro id que corresponde al indice del arreglo de objetos guardados en el localStorage
+                  // Se crea un objeto con los datos de la nota, mas los datos de la nota guardada proveniente del arreglo de objetos
+                  let notaModificada = 
+                    { 
+                      titulo: this.titulo,
+                      nota: this.nota,
 
-                  notasGuardadas[this.$route.params.id].titulo = this.titulo;
-                  notasGuardadas[this.$route.params.id].nota = this.nota;
+                      creacion: {
+                        dia: notasGuardadas[this.$route.params.id].creacion.dia,
+                        mes: notasGuardadas[this.$route.params.id].creacion.mes,
+                        año: notasGuardadas[this.$route.params.id].creacion.año,
+                        hora: notasGuardadas[this.$route.params.id].creacion.hora,
+                        minuto: notasGuardadas[this.$route.params.id].creacion.minuto,
+                        segundo: notasGuardadas[this.$route.params.id].creacion.segundo
+                      },
 
-                  notasGuardadas[this.$route.params.id].modificacion.dia = diaF;
-                  notasGuardadas[this.$route.params.id].modificacion.mes = mesF;
-                  notasGuardadas[this.$route.params.id].modificacion.año = añoF;
+                      modificacion: {
+                        dia: diaF,
+                        mes: mesF,
+                        año: añoF,
+                        hora: horaF,
+                        minuto: minutosF,
+                        segundo: segundosF
+                      }, 
+                    };
 
-                  notasGuardadas[this.$route.params.id].modificacion.hora = horaF;
-                  notasGuardadas[this.$route.params.id].modificacion.minuto = minutosF;
-                  notasGuardadas[this.$route.params.id].modificacion.segundo = segundosF;
+                  // De las notas guardadas, se elimina la nota
+                  notasGuardadas.splice(this.$route.params.id, 1);
 
-                  // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva editada en el arreglo de objetos
+                  // Para ahora agregar la nota modificada, y asi quede en la primera posicion del arreglo. Esto es necesario para poder ordenar desde el mas modificado, al mas antiguo
+                  notasGuardadas.unshift(notaModificada);
+
+                  // Solo queda convertirlo en string y guardar nuevamente, con la nueva editada en el arreglo de objetos
                   localStorage.setItem('notas', JSON.stringify(notasGuardadas));
 
+                  // Y actualizar el store para que obtenga los nuevos valores
+                  this.CargarNotasAlStore(notasGuardadas);
+
                   alertify.success('Se ha editado la nota');
-                  this.Regresar(); // Redireccionar a la pagina anterior.
+
+                  // Y ahora se dirige a ver la nota, y como esta en la primera posicion, siempre va a la posicion 0
+                  this.IrA(`/ver-nota/${0}`);
 
                   }
                    
