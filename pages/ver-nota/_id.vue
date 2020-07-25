@@ -10,7 +10,9 @@
       </div>
 
       <div class="ver__encabezado-acciones">
-        <i class="fa fa-copy"></i>
+        <i class="fa fa-pen" @click="EditarNota"></i>
+        <i class="fa fa-trash" @click="EliminandoNota"></i>
+        <i class="fa fa-copy" @click="CopiarNota" v-if="soporteCopiar"></i>
       </div>
     </header>
 
@@ -39,8 +41,8 @@
             <button class="boton boton--gris" @click="EliminandoNota">
               <i class="fa fa-trash"></i> Eliminar nota
             </button>
-            <button class="boton boton--gris">
-              <i class="fa fa-copy"></i> Copiar a portapapeles
+            <button class="boton boton--gris" @click="CopiarNota" v-if="soporteCopiar">
+              <i class="fa fa-copy"></i> Copiar Nota
             </button>
           </div>
 
@@ -65,7 +67,9 @@
     data(){
       return {
         nota: null, // Se llena con todo el arreglo. Insertado en el ciclo de vida beforeMount.
-        modificada: false // Hace enfasis a que la nota fue modificada. Asi se podra mostrar o no en el HTML.
+        modificada: false, // Hace enfasis a que la nota fue modificada. Asi se podra mostrar o no en el HTML.
+
+        soporteCopiar: false // Pasa a true, si existe el soporte para el comando de copiar.
       }
     },
 
@@ -101,7 +105,31 @@
           .set('transition', 'fade')
           .set('movable', false);
 
-      }      
+      },
+      
+      CopiarNota(){
+        // Se crea un elemento "textarea". ¿Por que un textarea? para que los espacios y saltos de linea, tambien puena ser copiados.
+        // Tambien, un texto que contiene la nota.
+        let aux = document.createElement('textarea');
+        let texto = document.createTextNode(this.nota.nota);
+
+        // Se inserta en el BODY el textarea
+        document.body.appendChild(aux);
+
+        // Se le inserta el texto al textarea
+        aux.appendChild(texto);
+
+        // Se selecciona
+        aux.select();
+
+        // Se ejecuta el comando copiar
+        document.execCommand('copy');
+
+        // Luego, se elimina del BODY
+        document.body.removeChild(aux);
+
+        alertify.message('<b>Copiada y guardada la nota en su portapapeles</b>');
+      }
 
     },
 
@@ -128,7 +156,14 @@
       //Y, toda la nota es enviada al data de esta vista para poder mostrar los datos, mandar a los diferentes links, etc.
       this.nota = notas[this.$route.params.id];
 
+      /////////////////////////////////////////////////////////////////////
+
+      if(document.queryCommandSupported('copy')){
+        // Si esta soportado el comando de copiar, pasa a true y asi muestra los respectivos botones en el DOM
+        this.soporteCopiar = true;
       }
+
+    }
   }
 
 </script>
@@ -152,7 +187,7 @@
       background: $color-blanco;
       display: grid;
       grid-template-areas: "regresar titulo acciones";
-      grid-template-columns: 50px 70% auto;
+      grid-template-columns: 50px auto auto;
 
       &-regresar {
         grid-area: regresar;
@@ -254,6 +289,5 @@
     }
 
   } 
-  
 
 </style>
