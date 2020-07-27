@@ -135,11 +135,49 @@
 
     computed: {
       creacionNota(){
-        return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - A las ${this.nota.creacion.hora} horas con ${this.nota.creacion.minuto} minutos.`
+        let date = new Date();
+        let dia = date.getDate();
+
+        let hora = (this.nota.creacion.hora < 10) ? "0" + this.nota.creacion.hora : this.nota.creacion.hora;
+
+        let minuto = (this.nota.creacion.minuto < 10) ? "0" + this.nota.creacion.minuto : this.nota.creacion.minuto;
+
+        if(dia == this.nota.creacion.dia){
+          return `Hoy - A las ${hora} horas con ${minuto} minutos.`
+        }
+
+        else if(dia == this.nota.creacion.dia+1){
+            return `Ayer - A las ${hora} horas con ${minuto} minutos.`
+        }
+
+        else {
+            return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - A las ${hora} horas con ${minuto} minutos.`
+        }
+
       },
+
       modificacionNota(){
-        return `${this.nota.modificacion.dia} / ${this.nota.modificacion.mes} / ${this.nota.modificacion.año} - A las ${this.nota.modificacion.hora} horas con ${this.nota.modificacion.minuto} minutos.`
-      }
+        let date = new Date();
+        let dia = date.getDate();
+
+        let hora = (this.nota.modificacion.hora < 10) ? "0" + this.nota.modificacion.hora : this.nota.modificacion.hora;
+
+        let minuto = (this.nota.modificacion.minuto < 10) ? "0" + this.nota.modificacion.minuto : this.nota.modificacion.minuto;
+
+        if(dia == this.nota.modificacion.dia){
+          return `Hoy - A las ${hora} horas con ${minuto} minutos.`
+        }
+
+        else if(dia == this.nota.modificacion.dia+1){
+            return `Ayer - A las ${hora} horas con ${minuto} minutos.`
+        }
+
+        else {
+            return `${this.nota.modificacion.dia} / ${this.nota.modificacion.mes} / ${this.nota.modificacion.año} - A las ${hora} horas con ${minuto} minutos.`
+        }
+
+      },
+
     },
 
     beforeMount(){

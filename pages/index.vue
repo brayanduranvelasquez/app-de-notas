@@ -38,9 +38,8 @@
                   :nota="item.nota"
                   :id="index"
 
-                  :creacionDia="item.creacion.dia"
-                  :creacionMes="item.creacion.mes"
-                  :creacionAno="item.creacion.año"
+                  :creacion="item.creacion"
+                  :modificacion="item.modificacion"
                 >
                 </tarjeta>
               </div>

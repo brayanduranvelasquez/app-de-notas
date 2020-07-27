@@ -8,7 +8,7 @@
                 {{ NotaCorta }} <!-- computed -->
             </div> 
             <div class="tarjeta__contenido-pie">
-                <i class="fa fa-clock"></i><p> {{ creacionDia }} / {{ creacionMes }} / {{ creacionAno }} </p>
+                <i class="fa fa-clock"></i><p> {{ FechaCreacionOModificacion }}  </p>
             </div>
         </div>
 
@@ -32,20 +32,13 @@
     mixins: [navegacion],
         name: 'Tarjeta',
 
-        data(){
-            return {
-                ver: true, // Si el usuario elimina la nota, pasa a ser false, y por ende, deja de verse esta Tarjeta.
-            }
-        },
-
         props: {
             titulo: String,
             nota: String,
             id: Number,
 
-            creacionDia: Number,
-            creacionMes: Number,
-            creacionAno: Number,
+            creacion: Object,
+            modificacion: Object
         },
 
         computed: {
@@ -58,6 +51,49 @@
 
                 else {
                     return nota;
+                }
+                
+            },    
+            FechaCreacionOModificacion(){
+                // Verifica primero si existe el dia modificado. De ser asi, mostrara la ultima modificacion. Sino, mostrara la fecha de creacion. Tambien comprobara si el dia el igual o si es otro dia, para mostrar un mensaje como "Hoy", y "Ayer" (referencia a cuando fue creada/modificada)
+
+                let date = new Date();
+                let dia = date.getDate();
+
+                if(this.modificacion.dia){
+                    let hora = (this.modificacion.hora < 10) ? "0" + this.modificacion.hora : this.modificacion.hora;
+
+                    let minuto = (this.modificacion.minuto < 10) ? "0" + this.modificacion.minuto : this.modificacion.minuto;
+
+                    if(dia == this.modificacion.dia){
+                        return `Hoy - ${hora}:${minuto}`
+                    }
+
+                    else if(dia == this.modificacion.dia+1){
+                        return `Ayer - ${hora}:${minuto}`
+                    }
+
+                    else {
+                        return `${this.modificacion.dia} / ${this.modificacion.mes} / ${this.modificacion.año} - ${hora}:${minuto}`
+                    }
+                }
+
+                else {
+                    let hora = (this.creacion.hora < 10) ? "0" + this.creacion.hora : this.creacion.hora;
+
+                    let minuto = (this.creacion.minuto < 10) ? "0" + this.creacion.minuto : this.creacion.minuto;
+
+                    if(dia == this.creacion.dia){
+                        return `Hoy - ${hora}:${minuto}`
+                    }
+
+                    else if(dia == this.creacion.dia+1){
+                        return `Ayer - ${hora}:${minuto}`
+                    }
+
+                    else {
+                        return `${this.creacion.dia} / ${this.creacion.mes} / ${this.creacion.año} - ${hora}:${minuto}`
+                    }
                 }
                 
             }
@@ -97,7 +133,7 @@
                 .set('movable', false);
 
             }
-        }
+        },
     }
 </script>
 
