@@ -103,10 +103,10 @@
             ...mapMutations(['EliminarNota']),
 
             VerNota(){
-                this.IrA(`/ver-nota/${this.id}`);
+                this.IrA(`/ver-nota/${btoa(this.id)}`);
             },
             EditarNota(){
-                this.IrA(`/editar-nota/${this.id}`);
+                this.IrA(`/editar-nota/${btoa(this.id)}`);
             },
             EliminandoNota(){
 

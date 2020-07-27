@@ -90,7 +90,9 @@
         nota: '', // Todo el texto que este en el input para la nota a guardar
         inputNotaError: false,
 
-        seEscribio: false // Para a true cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar un mensaje
+        seEscribio: false, // Para a true cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar un mensaje
+
+        id: null, // Parametro. Nos ayuda a saber la posicion de esta nota en el arreglo de objetos.
       }
     },
 
@@ -183,12 +185,12 @@
                       nota: this.nota,
 
                       creacion: {
-                        dia: notasGuardadas[this.$route.params.id].creacion.dia,
-                        mes: notasGuardadas[this.$route.params.id].creacion.mes,
-                        año: notasGuardadas[this.$route.params.id].creacion.año,
-                        hora: notasGuardadas[this.$route.params.id].creacion.hora,
-                        minuto: notasGuardadas[this.$route.params.id].creacion.minuto,
-                        segundo: notasGuardadas[this.$route.params.id].creacion.segundo
+                        dia: notasGuardadas[this.id].creacion.dia,
+                        mes: notasGuardadas[this.id].creacion.mes,
+                        año: notasGuardadas[this.id].creacion.año,
+                        hora: notasGuardadas[this.id].creacion.hora,
+                        minuto: notasGuardadas[this.id].creacion.minuto,
+                        segundo: notasGuardadas[this.id].creacion.segundo
                       },
 
                       modificacion: {
@@ -202,7 +204,7 @@
                     };
 
                   // De las notas guardadas, se elimina la nota
-                  notasGuardadas.splice(this.$route.params.id, 1);
+                  notasGuardadas.splice(this.id, 1);
 
                   // Para ahora agregar la nota modificada, y asi quede en la primera posicion del arreglo. Esto es necesario para poder ordenar desde el mas modificado, al mas antiguo
                   notasGuardadas.unshift(notaModificada);
@@ -216,7 +218,7 @@
                   alertify.success('Se ha editado la nota');
 
                   // Y ahora se dirige a ver la nota, y como esta en la primera posicion, siempre va a la posicion 0
-                  this.IrA(`/ver-nota/${0}`);
+                  this.IrA(`/ver-nota/${btoa(0)}`);
 
                   }
                    
@@ -260,10 +262,13 @@
       let localNotas = localStorage.getItem('notas');
       let notas = JSON.parse(localNotas);
 
+      let id = atob(this.$route.params.id);
+      this.id = id;
+
       // Se extraen todas las notas del localStorage, y gracias al parametro recibido, se insertan los valores en el titulo y la nota del data de esta vista...
 
-      this.titulo = notas[this.$route.params.id].titulo;
-      this.nota = notas[this.$route.params.id].nota;
+      this.titulo = notas[id].titulo;
+      this.nota = notas[id].nota;
     }
   }
 

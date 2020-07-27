@@ -66,8 +66,11 @@
 
     data(){
       return {
-        nota: null, // Se llena con todo el arreglo. Insertado en el ciclo de vida beforeMount.
+        nota: null, // Se llena con todo el arreglo de el id correspondiente (index). Insertado en el ciclo de vida beforeMount.
+
         modificada: false, // Hace enfasis a que la nota fue modificada. Asi se podra mostrar o no en el HTML.
+
+        id: null, // Parametro. Nos ayuda a saber la posicion de esta nota en el arreglo de objetos.
 
         soporteCopiar: false // Pasa a true, si existe el soporte para el comando de copiar.
       }
@@ -77,7 +80,7 @@
       ...mapMutations(['EliminarNota']),
       
       EditarNota(){
-        this.IrA(`/editar-nota/${this.$route.params.id}`);
+        this.IrA(`/editar-nota/${btoa(this.id)}`);
       },
 
       EliminandoNota(){
@@ -96,7 +99,7 @@
           'Eliminar', // Titulo
           mensaje, // Mensaje
           () => { 
-            this.EliminarNota(this.$route.params.id); 
+            this.EliminarNota(this.id); 
             this.IrA('/');
             alertify.success("Nota eliminada");
           }, // Presionar que si
@@ -184,15 +187,18 @@
       let localNotas = localStorage.getItem('notas');
       let notas = JSON.parse(localNotas);
 
+      let id = atob(this.$route.params.id);
+      this.id = id;
+
       // Se extraen todas las notas del localStorage, y gracias al parametro recibido, se insertan los valores en el titulo y la nota del data de esta vista...
 
       // Si existe aunque sea el dia de la modificacion de la nota, el valor de la data de esta vista cambiara a true y asi mostrar la fecha de modificacion
-      if(notas[this.$route.params.id].modificacion.dia){
+      if(notas[id].modificacion.dia){
         this.modificada = true;
       }
 
       //Y, toda la nota es enviada al data de esta vista para poder mostrar los datos, mandar a los diferentes links, etc.
-      this.nota = notas[this.$route.params.id];
+      this.nota = notas[id];
 
       /////////////////////////////////////////////////////////////////////
 
