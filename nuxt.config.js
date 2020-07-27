@@ -69,6 +69,7 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
   /*
   ** Axios module configuration
@@ -80,6 +81,23 @@ export default {
   ** See https://nuxtjs.org/api/configuration-build/
   */
   build: {
+  },
+  /*
+  ** PWA
+  ** 
+  */
+  pwa: {
+    meta: {
+      title: 'App de Notas',
+      author: 'Brayan Duran Velasquez',
+      description: 'Aplicacion para guardar sus notas',
+      display: 'fullscreen'
+    },
+    manifest: {
+      name: 'Aplicacion de Notas',
+      short_name: 'App de Notas',
+      lang: 'es',
+    },
   }
 }
 
