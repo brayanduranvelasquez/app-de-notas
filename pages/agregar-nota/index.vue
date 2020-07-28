@@ -76,6 +76,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
+  import alertify from "alertifyjs/build/alertify.min.js";
 
   export default {
     mixins: [navegacion],
@@ -231,6 +232,7 @@
 
       Retroceder(){
         // Si se escribio algo en los inputs, mostrara la alerta. Sino, solo regresara a la pagina anterior..
+
 
         if(this.seEscribio){
 

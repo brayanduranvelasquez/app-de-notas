@@ -74,6 +74,7 @@
 <script>
   import navegacion from "@/mixins/navegacion.js";
   import { mapMutations } from "vuex";
+  import alertify from "alertifyjs/build/alertify.min.js";
 
   export default {
     mixins: [navegacion],
