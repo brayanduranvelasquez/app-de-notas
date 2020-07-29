@@ -76,7 +76,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
-  import alertify from "alertifyjs/build/alertify.min.js";
+  import alertify from "alertifyjs";
 
   export default {
     mixins: [navegacion],
