@@ -1,6 +1,9 @@
 <template>
   <div class="ver">
-    <header class="ver__encabezado">
+    <header 
+      class="ver__encabezado"
+      :class="{'ver__encabezado-oscuro' : modoOscuro}"
+    >
       <div class="ver__encabezado-regresar" @click="IrA('/')">
         <i class="fa fa-arrow-left"></i>
       </div>
@@ -24,7 +27,10 @@
             Titulo: {{ nota.titulo }}
           </div>
 
-          <div class="ver__contenido-nota-fechas">
+          <div 
+            class="ver__contenido-nota-fechas"
+            :class="{'ver__contenido-nota-fechas-oscuro' : modoOscuro}"
+          >
             <div>
               Creada: {{ creacionNota }}
             </div>
@@ -56,7 +62,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
-  import { mapMutations } from "vuex";
+  import { mapState, mapMutations } from "vuex";
   import alertify from "alertifyjs";
 
   export default {
@@ -138,6 +144,8 @@
     },
 
     computed: {
+      ...mapState(['modoOscuro']),
+
       creacionNota(){
         let date = new Date();
         let dia = date.getDate();
@@ -225,7 +233,8 @@
 
   .ver {
     width: 100%;
-    background: $color-blanco;
+    color: inherit;
+    background: inherit;
     margin: auto;
     font-size: 16px;
     margin-top: 75px;
@@ -234,6 +243,7 @@
       width: 100%;
       box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
       position: fixed;
+      z-index: 10000;
       top: 0;
       background: $color-blanco;
       display: grid;
@@ -297,6 +307,8 @@
     }
 
     &__contenido {
+      color: inherit;
+      background: inherit;
       padding: 0px 15px;
       margin: auto;
       width: 100%;
@@ -306,6 +318,7 @@
       &-nota {
 
         &-titulo {
+          color: inherit;
           font-size: calc(1em + 8px);
           font-weight: 600;
           word-wrap: break-word;
@@ -313,8 +326,11 @@
 
         &-fechas {
           font-size: calc(1em + 2px);
-          color: rgb(114, 114, 114);
           margin-bottom: 18px;
+
+          div{
+            color: $color-negro-terciario;
+          }
         }
 
         &-acciones {
@@ -331,6 +347,7 @@
         }
 
         &-detalle {
+          color: inherit;
           word-wrap: break-word;
           white-space: pre-line;
           margin-top: 12px;
@@ -340,5 +357,15 @@
     }
 
   } 
+
+  .ver__encabezado-oscuro{
+    background: #121212;
+  }
+
+  .ver__contenido-nota-fechas-oscuro{
+    div{
+      color: $color-blanco-terciario;
+    }
+  }
 
 </style>

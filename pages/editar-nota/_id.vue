@@ -1,6 +1,9 @@
 <template>
   <div class="editar">
-    <header class="editar__encabezado">
+    <header 
+      class="editar__encabezado"
+      :class="{'editar__encabezado-oscuro' : modoOscuro}"
+    >
       <div class="editar__encabezado-regresar" @click="Retroceder">
         <i class="fa fa-arrow-left"></i>
       </div>
@@ -73,7 +76,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
-  import { mapMutations } from "vuex";
+  import { mapState, mapMutations } from "vuex";
   import alertify from "alertifyjs";
 
   export default {
@@ -254,6 +257,8 @@
     },
 
     computed: {
+      ...mapState(['modoOscuro']),
+
       tamanoLetrasEnInputNota() {
         return this.nota.length + " / 1000"
       }
@@ -281,7 +286,7 @@
 
   .editar {
     width: 100%;
-    background: $color-blanco;
+    background: inherit;
     margin: auto;
     font-size: 16px;
 
@@ -363,5 +368,9 @@
     }
 
   } 
+
+  .editar__encabezado-oscuro{
+    background: #121212;
+  }
 
 </style>

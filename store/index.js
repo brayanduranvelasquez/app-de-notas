@@ -1,11 +1,17 @@
 export const state = () => ({
     notas: null, // Todas las notas guardadas en el localStorage
+    modoOscuro: false // True para que sea modo oscuro.
 })
 
 export const mutations = {
 
     CargarNotasAlStore(state, notasGuardadas){
         state.notas = notasGuardadas; // Esta mutacion es usada en la vista inicial, para guardar todas las notas. Y asi, a traves de una propiedad computada, poder mostrar cuando una nota se elimine, ya que la mutacion "EliminarNota" elimina una nota, y modifica el state "notas"
+    },
+
+    CambiarModo(state){
+        state.modoOscuro = !state.modoOscuro;
+        localStorage.setItem('notas-modo-oscuro', state.modoOscuro);
     },
 
     EliminarNota(state, indice) {

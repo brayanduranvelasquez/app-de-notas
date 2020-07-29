@@ -1,6 +1,9 @@
 <template>
   <div class="agregar">
-      <header class="agregar__encabezado">
+      <header 
+        class="agregar__encabezado"
+        :class="{'agregar__encabezado-oscuro' : modoOscuro}"
+      >
         <div class="agregar__encabezado-regresar" @click="Retroceder">
           <i class="fa fa-arrow-left"></i>
         </div>
@@ -76,6 +79,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
+  import { mapState, mapMutations } from "vuex";
   import alertify from "alertifyjs";
 
   export default {
@@ -259,6 +263,8 @@
     },
 
     computed: {
+      ...mapState(['modoOscuro']),
+
       tamanoLetrasEnInputNota() {
         return this.nota.length + " / 1000"
       }
@@ -273,7 +279,8 @@
 
   .agregar {
     width: 100%;
-    background: $color-blanco;
+    background: inherit;
+    color: inherit;
     margin: auto;
     font-size: 16px;
 
@@ -283,6 +290,7 @@
       position: fixed;
       top: 0;
       background: $color-blanco;
+      color: inherit;
       display: grid;
       grid-template-areas: "regresar titulo acciones";
       grid-template-columns: 50px 70% auto;
@@ -356,5 +364,9 @@
     }
 
   } 
+
+  .agregar__encabezado-oscuro{
+    background: #121212;
+  }
 
 </style>

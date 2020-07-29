@@ -7,6 +7,8 @@
 
     <template v-else>
       <Nuxt />
+
+      {{ Modo }}
     </template>
     
   </div>
@@ -14,6 +16,7 @@
 
 <script>
   import CargaInicial from "@/components/CargaInicial.vue";
+  import { mapState, mapMutations } from "vuex";
 
   export default {
     components: {
@@ -26,9 +29,37 @@
       }
     },
 
+    methods: {
+      ...mapMutations(['CambiarModo'])
+    },
+
+    computed: {
+      ...mapState(['modoOscuro']),
+
+      Modo(){
+        if(this.modoOscuro){
+          let body = document.body;
+          body.style.background = "#121212";
+          body.style.color = "white";
+        } 
+        else {
+          let body = document.body;
+          body.style.background = "white";
+          body.style.color = "black";
+        }
+      }
+    },
+
     mounted(){
-      this.montado = true;
+      this.montado = true; // Desaparece la cargainicial
+
+      // Y se comprueba si la ultima vez, se dejo en modoOscuro
+      let notasModoOscuro = localStorage.getItem('notas-modo-oscuro');
+      if(notasModoOscuro == 'true'){
+        this.CambiarModo();
+      }
     }
+    
   }
 </script>
 
@@ -51,9 +82,13 @@
   }
 
   html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    transition: 0.3s all;
     background: #fff;
     font-family: 'Lato';
-    scroll-behavior: smooth;
   }
 
 </style>

@@ -1,5 +1,8 @@
 <template>
-    <div class="tarjeta">
+    <div 
+        class="tarjeta"
+        :class="{'tarjeta-oscuro' : modoOscuro}"
+    >
         <div class="tarjeta__contenido" @click="VerNota">
             <div class="tarjeta__contenido-encabezado">
                 <p>{{ titulo }}</p>
@@ -7,12 +10,15 @@
             <div class="tarjeta__contenido-cuerpo">
                 {{ NotaCorta }} <!-- computed -->
             </div> 
-            <div class="tarjeta__contenido-pie">
+            <div class="tarjeta__contenido-pie ">
                 <i class="fa fa-clock"></i><p> {{ FechaCreacionOModificacion }}  </p>
             </div>
         </div>
 
-        <div class="tarjeta__acciones">
+        <div 
+            class="tarjeta__acciones"
+            :class="{'tarjeta__acciones-oscuro' : modoOscuro}"
+        >
             <div class="tarjeta__acciones-editar" @click="EditarNota">
                 <i class="fa fa-pen"></i><p>Editar</p>
             </div>
@@ -26,7 +32,7 @@
 
 <script>
   import navegacion from "@/mixins/navegacion.js";
-  import { mapMutations } from "vuex";
+  import { mapState, mapMutations } from "vuex";
   import alertify from "alertifyjs";
 
   export default {
@@ -43,6 +49,8 @@
         },
 
         computed: {
+            ...mapState(['modoOscuro']),
+
             NotaCorta(){
                 let nota = this.nota;
 
@@ -149,8 +157,9 @@
     // Resolucion -> Dispositivos pequeños -> 320px de ancho
     
     .tarjeta {
+        transition: .2s all;
         font-size: 16px;
-        border: 1px solid $color-gris;
+        border: 1px solid $color-gris-terciario;
         border-radius: 5px;
         width: 100%;
         margin: 15px 0;
@@ -223,7 +232,7 @@
                 height: 50%;
                 box-sizing: border-box;
                 width: 100%;
-                border-bottom: 1px solid $color-gris;
+                border-bottom: 1px solid $color-gris-terciario;
                 
                 i, p {
                     color: #888;
@@ -241,6 +250,32 @@
                 
             }
         }
+    }
+
+    .tarjeta-oscuro {
+        color: inherit;
+        border: 1px solid inherit;
+
+            &:hover {
+                background: rgb(37, 37, 37);
+            } 
+    }
+
+    .tarjeta__acciones-oscuro {
+                
+        i, p {
+            color: $color-blanco;
+        }
+
+            &:hover {
+                background: rgb(44, 44, 44);
+                cursor: pointer;
+            }
+
+            &:active {
+                background: rgb(46, 46, 46);
+            }
+                
     }
 
 </style>
