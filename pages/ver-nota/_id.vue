@@ -142,20 +142,23 @@
         let date = new Date();
         let dia = date.getDate();
 
-        let hora = (this.nota.creacion.hora < 10) ? "0" + this.nota.creacion.hora : this.nota.creacion.hora;
+        let hora = this.nota.creacion.hora;
+        let amOPm = (hora > 12) ? 'pm' : 'am';
+        let horas12 = (hora > 12) ? hora - 12 : hora;
+        let horaProcesada = (horas12 < 10) ? '0' + horas12 : horas12;
 
         let minuto = (this.nota.creacion.minuto < 10) ? "0" + this.nota.creacion.minuto : this.nota.creacion.minuto;
 
         if(dia == this.nota.creacion.dia){
-          return `Hoy - A las ${hora} horas con ${minuto} minutos.`
+          return `Hoy - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else if(dia == this.nota.creacion.dia+1){
-            return `Ayer - A las ${hora} horas con ${minuto} minutos.`
+            return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else {
-            return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - A las ${hora} horas con ${minuto} minutos.`
+            return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
       },
@@ -164,20 +167,23 @@
         let date = new Date();
         let dia = date.getDate();
 
-        let hora = (this.nota.modificacion.hora < 10) ? "0" + this.nota.modificacion.hora : this.nota.modificacion.hora;
+        let hora = this.nota.modificacion.hora;
+        let amOPm = (hora > 12) ? 'pm' : 'am';
+        let horas12 = (hora > 12) ? hora - 12 : hora;
+        let horaProcesada = (horas12 < 10) ? '0' + horas12 : horas12;
 
         let minuto = (this.nota.modificacion.minuto < 10) ? "0" + this.nota.modificacion.minuto : this.nota.modificacion.minuto;
 
         if(dia == this.nota.modificacion.dia){
-          return `Hoy - A las ${hora} horas con ${minuto} minutos.`
+          return `Hoy - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else if(dia == this.nota.modificacion.dia+1){
-            return `Ayer - A las ${hora} horas con ${minuto} minutos.`
+            return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else {
-            return `${this.nota.modificacion.dia} / ${this.nota.modificacion.mes} / ${this.nota.modificacion.año} - A las ${hora} horas con ${minuto} minutos.`
+            return `${this.nota.modificacion.dia} / ${this.nota.modificacion.mes} / ${this.nota.modificacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
       },

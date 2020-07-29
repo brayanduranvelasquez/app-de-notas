@@ -62,38 +62,44 @@
                 let dia = date.getDate();
 
                 if(this.modificacion.dia){
-                    let hora = (this.modificacion.hora < 10) ? "0" + this.modificacion.hora : this.modificacion.hora;
+                    let hora = this.modificacion.hora;
+                    let amOPm = (hora > 12) ? 'pm' : 'am';
+                    let horas12 = (hora > 12) ? hora - 12 : hora;
+                    let horaProcesada = (horas12 < 10) ? '0' + horas12 : horas12;
 
-                    let minuto = (this.modificacion.minuto < 10) ? "0" + this.modificacion.minuto : this.modificacion.minuto;
+                    let minuto = (this.modificacion.minuto < 10) ? '0' + this.modificacion.minuto : this.modificacion.minuto;
 
                     if(dia == this.modificacion.dia){
-                        return `Hoy - ${hora}:${minuto}`
+                        return `${horaProcesada}:${minuto}${amOPm}`
                     }
 
                     else if(dia == this.modificacion.dia+1){
-                        return `Ayer - ${hora}:${minuto}`
+                        return `Ayer`
                     }
 
                     else {
-                        return `${this.modificacion.dia} / ${this.modificacion.mes} / ${this.modificacion.año} - ${hora}:${minuto}`
+                        return `${this.modificacion.dia} / ${this.modificacion.mes} / ${this.modificacion.año}`
                     }
                 }
 
                 else {
-                    let hora = (this.creacion.hora < 10) ? "0" + this.creacion.hora : this.creacion.hora;
+                    let hora = this.creacion.hora;
+                    let amOPm = (hora > 12) ? 'pm' : 'am';
+                    let horas12 = (hora > 12) ? hora - 12 : hora;
+                    let horaProcesada = (horas12 < 10) ? '0' + horas12 : horas12;
 
-                    let minuto = (this.creacion.minuto < 10) ? "0" + this.creacion.minuto : this.creacion.minuto;
+                    let minuto = (this.creacion.minuto < 10) ? '0' + this.creacion.minuto : this.creacion.minuto;
 
                     if(dia == this.creacion.dia){
-                        return `Hoy - ${hora}:${minuto}`
+                        return `${horaProcesada}:${minuto}${amOPm}`
                     }
 
                     else if(dia == this.creacion.dia+1){
-                        return `Ayer - ${hora}:${minuto}`
+                        return `Ayer`
                     }
 
                     else {
-                        return `${this.creacion.dia} / ${this.creacion.mes} / ${this.creacion.año} - ${hora}:${minuto}`
+                        return `${this.creacion.dia} / ${this.creacion.mes} / ${this.creacion.año}`
                     }
                 }
                 
