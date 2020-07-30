@@ -35,7 +35,7 @@
                   type="text" 
                   placeholder="Titulo para la nota" 
                   id="inputTitulo"
-                  :class="{'formulario__grupo-input--error' : inputTituloError}"
+                  :class="{'formulario__grupo-input--error' : inputTituloError, 'formulario__grupo-input--oscuro' : modoOscuro}"
                   v-model="titulo" 
                 >
     
@@ -59,7 +59,7 @@
                   class="formulario__grupo-textarea" 
                   placeholder="Agregue el contenido de su nueva nota" 
                   id="inputNota"
-                  :class="{'formulario__grupo-textarea--error' : inputNotaError}"
+                  :class="{'formulario__grupo-textarea--error' : inputNotaError, 'formulario__grupo-textarea--oscuro' : modoOscuro}"
                   v-model="nota" 
                 >
                 </textarea>

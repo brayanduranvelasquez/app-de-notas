@@ -1,8 +1,9 @@
-$color-error: rgb(231, 0, 0);
+@import "colores";
+$color-input-oscuro: rgb(66, 66, 66);
 
 .formulario {
-    width: 100%;
-    font-size: 16px;
+  width: 100%;
+  font-size: 16px;
 
     &__grupo {
       display: flex;
@@ -48,18 +49,26 @@ $color-error: rgb(231, 0, 0);
       }
 
       &-input--error, &-textarea--error {
-        border: 1px solid $color-error; 
+        border: 1px solid $color-rojo; 
 
         &:hover, &:focus {
-          border: 1px solid $color-error;
+          border: 1px solid $color-rojo;
         }
       }
 
       &-mensaje {
-        font-weight: 600px;
+        font-weight: 600;
         text-align: right;
-        color: $color-error;
+        color: $color-rojo;
       }
       
     }
-  }
+}
+
+// Modo oscuro
+
+.formulario__grupo-input--oscuro,
+.formulario__grupo-textarea--oscuro {
+  color: $color-blanco;
+  background: $color-input-oscuro;
+}
