@@ -1,33 +1,14 @@
 <template>
   <div>
-    
-    <template v-if="!montado">
-      <carga-inicial />
-    </template>
-
-    <template v-else>
-      <Nuxt />
-
-      {{ Modo }}
-    </template>
-    
+    <Nuxt />
+    {{ Modo }}
   </div>
 </template>
 
 <script>
-  import CargaInicial from "@/components/CargaInicial.vue";
   import { mapState, mapMutations } from "vuex";
 
   export default {
-    components: {
-      CargaInicial
-    },
-
-    data(){
-      return {
-        montado: false
-      }
-    },
 
     methods: {
       ...mapMutations(['CambiarModo'])
@@ -51,9 +32,7 @@
     },
 
     mounted(){
-      this.montado = true; // Desaparece la cargainicial
-
-      // Y se comprueba si la ultima vez, se dejo en modoOscuro
+      // Y se comprueba si la ultima vez, se dejo en modoOscuro. De ser asi, se ejecuta el metodo para cambiarlo.
       let notasModoOscuro = localStorage.getItem('notas-modo-oscuro');
       if(notasModoOscuro == 'true'){
         this.CambiarModo();
