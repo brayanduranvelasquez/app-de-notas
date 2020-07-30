@@ -1,15 +1,15 @@
 <template>
   <div class="inicio">
     <header 
-      class="inicio__encabezado"
-      :class="{'inicio__encabezado-oscuro' : modoOscuro}"
+      class="encabezado"
+      :class="{'encabezado--oscuro' : modoOscuro}"
     >
-      <div class="inicio__encabezado-titulo">
+      <div class="encabezado__titulo--inicio"> <!-- Es el titulo, en este caso -->
         <p>Notas</p>
       </div>
       <div 
-        class="inicio__encabezado-acciones" 
-        :class="{'inicio__encabezado-acciones-oscuro' : modoOscuro}"
+        class="encabezado__acciones" 
+        :class="{'encabezado__acciones--oscuro' : modoOscuro}"
       >
         <i 
           :class="{'fa fa-sun' : modoOscuro, 'fa fa-moon' : !modoOscuro}"
@@ -122,54 +122,6 @@
     margin: auto;
     font-size: 16px;
 
-    &__encabezado {
-      background: $color-blanco;
-      transition: all 0.3s;
-      width: 100%;
-      box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
-      position: fixed;
-      z-index: 10000;
-      top: 0;
-      display: grid;
-      grid-template-areas: "titulo acciones";
-      grid-template-columns: auto auto;
-
-      &-titulo {
-        grid-area: titulo;
-        padding: 12px 0px;
-
-          p {
-            font-size: calc(1em + 5px);
-            margin-left: 12px;
-          }
-
-      }
-
-      &-acciones {
-        grid-area: acciones;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-
-        i {
-          color: rgb(143, 143, 143);
-          font-size: calc(1em + 4px);
-          margin-right: 16px;
-
-          &:hover {
-            color: rgb(139, 139, 139);
-            cursor: pointer;
-          }
-          
-          &:active {
-            color: rgb(117, 117, 117);
-          }
-        }
-        
-      }
-
-    }
-
     &__contenido {
       color: inherit;
       background: inherit;
@@ -207,24 +159,6 @@
 
       }
     } 
-  }
-
-  .inicio__encabezado-oscuro{
-    background: #121212;
-  }
-  
-  .inicio__encabezado-acciones-oscuro{
-    i {
-      color: $color-blanco;
-
-      &:hover {
-        color: $color-blanco-secundario;
-      }
-          
-      &:active {
-        color: $color-blanco-terciario;
-      }
-    }
   }
 
   .inicio__contenido-notas-vacio-oscuro {

@@ -4,7 +4,7 @@
 </template>
 
 <script>
-export default {
-    middleware: 'redireccionar-inicio'
-}
+    export default {
+        middleware: 'redireccionar-inicio'
+    }
 </script>

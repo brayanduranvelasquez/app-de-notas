@@ -1,0 +1,94 @@
+@import "colores";
+
+.encabezado {
+    background: $color-blanco;
+    color: inherit;
+    transition: all 0.3s;
+    width: 100%;
+    box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
+    position: fixed;
+    top: 0;
+
+    display: grid;
+    grid-template-areas: "regresar titulo acciones";
+    grid-template-columns: 50px 70% auto;
+
+    &__regresar {
+      grid-area: regresar;
+      padding: 12px 16px;
+
+        &:hover {
+            background: $color-gris-secundario;
+            cursor: pointer;
+        }
+
+        &:active {
+            background: $color-gris-terciario;
+        }
+
+        i {
+            font-size: calc(1em + 6px);
+        }
+    }
+
+    &__titulo {
+        grid-area: titulo;
+        padding: 12px 0px;
+
+        p {
+            font-size: calc(1em + 5px);
+            margin-left: 12px;
+        }
+    }
+
+    &__titulo--inicio{ // Solo usado en la vista "inicio"
+        padding: 12px 10px;
+
+        p {
+            font-size: calc(1em + 5px);
+            margin-left: 12px;
+        }
+    }
+
+    &__acciones {
+        grid-area: acciones;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+        i {
+            color: #ccc;
+            font-size: calc(1em + 4px);
+            margin-right: 16px;
+
+            &:hover {
+                color: rgb(177, 177, 177);
+                cursor: pointer;
+            }
+        
+            &:active {
+            color: rgb(129, 129, 129);
+            }
+        }
+    }
+}
+
+//Modo oscuro
+
+.encabezado--oscuro{
+    background: $color-fondo-oscuro;
+}
+
+.encabezado__acciones--oscuro{
+    i {
+        color: $color-blanco-secundario;
+
+        &:hover {
+            color: $color-blanco-terciario;
+        }
+          
+        &:active {
+            color: $color-blanco-terciario;
+        }
+    }
+}

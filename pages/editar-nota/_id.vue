@@ -1,18 +1,21 @@
 <template>
   <div class="editar">
     <header 
-      class="editar__encabezado"
-      :class="{'editar__encabezado-oscuro' : modoOscuro}"
+      class="encabezado"
+      :class="{'encabezado--oscuro' : modoOscuro}"
     >
-      <div class="editar__encabezado-regresar" @click="Retroceder">
+      <div class="encabezado__regresar" @click="Retroceder">
         <i class="fa fa-arrow-left"></i>
       </div>
       
-      <div class="editar__encabezado-titulo">
+      <div class="encabezado__titulo">
         <p>Editar Nota</p>
       </div>
 
-      <div class="editar__encabezado-acciones">
+      <div 
+        class="encabezado__acciones"
+        :class="{'encabezado__acciones--oscuro' : modoOscuro}"
+      >
         <i class="fa fa-save" @click="GuardarNota"></i>
       </div>
     </header>
@@ -290,72 +293,6 @@
     margin: auto;
     font-size: 16px;
 
-    &__encabezado {
-      width: 100%;
-      box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
-      position: fixed;
-      top: 0;
-      background: $color-blanco;
-      display: grid;
-      grid-template-areas: "regresar titulo acciones";
-      grid-template-columns: 50px 70% auto;
-
-      &-regresar {
-        grid-area: regresar;
-        padding: 12px 16px;
-
-        &:hover {
-          background: $color-gris-secundario;
-          cursor: pointer;
-        }
-
-        &:active {
-          background: $color-gris-terciario;
-        }
-
-        i {
-          font-size: calc(1em + 6px);
-        }
-        
-      }
-
-      &-titulo {
-        grid-area: titulo;
-        padding: 12px 0px;
-
-          p {
-            font-size: calc(1em + 5px);
-            margin-left: 12px;
-          }
-
-      }
-
-      &-acciones {
-        grid-area: acciones;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-
-        i {
-          color: #ccc;
-          font-size: calc(1em + 4px);
-          margin-right: 16px;
-
-          &:hover {
-            color: rgb(177, 177, 177);
-            cursor: pointer;
-          }
-          
-          &:active {
-            color: rgb(129, 129, 129);
-          }
-        }
-
-        
-      }
-
-    }
-
     &__contenido {
       padding: 0px 15px;
       padding-top: 50px;
@@ -368,9 +305,5 @@
     }
 
   } 
-
-  .editar__encabezado-oscuro{
-    background: #121212;
-  }
 
 </style>

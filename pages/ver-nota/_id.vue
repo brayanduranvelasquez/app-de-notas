@@ -1,18 +1,21 @@
 <template>
   <div class="ver">
     <header 
-      class="ver__encabezado"
-      :class="{'ver__encabezado-oscuro' : modoOscuro}"
+      class="encabezado"
+      :class="{'encabezado--oscuro' : modoOscuro}"
     >
-      <div class="ver__encabezado-regresar" @click="IrA('/')">
+      <div class="encabezado__regresar" @click="IrA('/')">
         <i class="fa fa-arrow-left"></i>
       </div>
       
-      <div class="ver__encabezado-titulo">
+      <div class="encabezado__titulo">
         <p>Nota</p>
       </div>
 
-      <div class="ver__encabezado-acciones">
+      <div 
+        class="encabezado__acciones"
+        :class="{'encabezado__acciones--oscuro' : modoOscuro}"
+      >
         <i class="fa fa-pen" @click="EditarNota"></i>
         <i class="fa fa-trash" @click="EliminandoNota"></i>
         <i class="fa fa-copy" @click="CopiarNota" v-if="soporteCopiar"></i>
@@ -239,73 +242,6 @@
     font-size: 16px;
     margin-top: 75px;
 
-    &__encabezado {
-      width: 100%;
-      box-shadow: 1px 1px 0px 0px rgb(212, 212, 212);
-      position: fixed;
-      z-index: 10000;
-      top: 0;
-      background: $color-blanco;
-      display: grid;
-      grid-template-areas: "regresar titulo acciones";
-      grid-template-columns: 50px auto auto;
-
-      &-regresar {
-        grid-area: regresar;
-        padding: 12px 16px;
-
-        &:hover {
-          background: $color-gris-secundario;
-          cursor: pointer;
-        }
-
-        &:active {
-          background: $color-gris-terciario;
-        }
-
-        i {
-          font-size: calc(1em + 6px);
-        }
-        
-      }
-
-      &-titulo {
-        grid-area: titulo;
-        padding: 12px 0px;
-
-          p {
-            font-size: calc(1em + 5px);
-            margin-left: 12px;
-          }
-
-      }
-
-      &-acciones {
-        grid-area: acciones;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-
-        i {
-          color: #ccc;
-          font-size: calc(1em + 4px);
-          margin-right: 16px;
-
-          &:hover {
-            color: rgb(177, 177, 177);
-            cursor: pointer;
-          }
-          
-          &:active {
-            color: rgb(129, 129, 129);
-          }
-        }
-
-        
-      }
-
-    }
-
     &__contenido {
       color: inherit;
       background: inherit;
@@ -359,7 +295,7 @@
   } 
 
   .ver__encabezado-oscuro{
-    background: #121212;
+    background: $color-fondo-oscuro;
   }
 
   .ver__contenido-nota-fechas-oscuro{
