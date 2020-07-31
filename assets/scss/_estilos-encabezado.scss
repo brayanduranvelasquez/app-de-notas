@@ -11,7 +11,7 @@
 
     display: grid;
     grid-template-areas: "regresar titulo acciones";
-    grid-template-columns: 50px 70% auto;
+    grid-template-columns: 50px auto auto;
 
     &__regresar {
       grid-area: regresar;

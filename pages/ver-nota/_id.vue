@@ -121,7 +121,7 @@
       },
       
       CopiarNota(){
-        // Se crea un elemento "textarea". ¿Por que un textarea? para que los espacios y saltos de linea, tambien puena ser copiados.
+        // Se crea un elemento "textarea". ¿Por que un textarea? para que los saltos de linea, tambien sean copiados.
         // Tambien, un texto que contiene la nota.
         let aux = document.createElement('textarea');
         let texto = document.createTextNode(this.nota.nota);
@@ -291,7 +291,6 @@
         }
       }
     }
-
   } 
 
   .ver__encabezado-oscuro{

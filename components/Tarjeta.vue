@@ -31,12 +31,12 @@
 </template>
 
 <script>
-  import navegacion from "@/mixins/navegacion.js";
-  import { mapState, mapMutations } from "vuex";
-  import alertify from "alertifyjs";
+    import navegacion from "@/mixins/navegacion.js";
+    import { mapState, mapMutations } from "vuex";
+    import alertify from "alertifyjs";
 
-  export default {
-    mixins: [navegacion],
+    export default {
+        mixins: [navegacion],
         name: 'Tarjeta',
 
         props: {
@@ -63,6 +63,7 @@
                 }
                 
             },    
+
             FechaCreacionOModificacion(){
                 // Verifica primero si existe el dia modificado. De ser asi, mostrara la ultima modificacion. Sino, mostrara la fecha de creacion. Tambien comprobara si el dia el igual o si es otro dia, para mostrar un mensaje como "Hoy", y "Ayer" (referencia a cuando fue creada/modificada)
 
@@ -120,9 +121,11 @@
             VerNota(){
                 this.IrA(`/ver-nota/${btoa(this.id)}`);
             },
+
             EditarNota(){
                 this.IrA(`/editar-nota/${btoa(this.id)}`);
             },
+
             EliminandoNota(){
 
                 // Class para las botones

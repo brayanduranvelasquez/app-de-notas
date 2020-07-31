@@ -22,7 +22,7 @@
       <main class="inicio__contenido">
 
         <section class="inicio__contenido-acciones"> 
-          <article class="inicio__contenido-acciones-agregar central" @click="IrA('/agregar-nota')">
+          <article class="inicio__contenido-acciones-agregar centrar" @click="IrA('/agregar-nota')">
             <button class="boton boton--gris"> <i class="fa fa-plus"></i> Agregar Nueva Nota </button>
           </article> 
         </section>

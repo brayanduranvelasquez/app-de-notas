@@ -28,24 +28,24 @@
             <div class="formulario">
 
               <div class="formulario__grupo">
-                <label class="formulario__grupo-label" for="titulo">Título:</label>
+                <label class="formulario__grupo-label" for="inputTitulo">Título:</label>
                 <input
                   @keyup="verificandoInputTitulo"
-                  class="formulario__grupo-input" 
+                  class="formulario__grupo-input"
+                  :class="{'formulario__grupo-input--error' : inputTituloError, 'formulario__grupo-input--oscuro' : modoOscuro}" 
                   type="text" 
                   placeholder="Titulo para la nota" 
                   id="inputTitulo"
-                  :class="{'formulario__grupo-input--error' : inputTituloError, 'formulario__grupo-input--oscuro' : modoOscuro}"
                   v-model="titulo" 
                 >
     
                 <template v-if="inputTituloError">
-                  <div class="formulario__grupo-mensaje">Entre 1 a 30 caracteres</div>
+                  <div class="formulario__grupo-mensaje">Entre 1 a 50 caracteres</div>
                 </template>
               </div>
 
               <div class="formulario__grupo">
-                <label class="formulario__grupo-label" for="descripcion">Nota:</label>
+                <label class="formulario__grupo-label" for="inputNota">Nota:</label>
 
                 <div 
                   style="text-align: right" 
@@ -65,7 +65,7 @@
                 </textarea>
               </div>
 
-              <div class="central">
+              <div class="centrar">
                 <button class="boton boton--gris" @click="GuardarNota">
                   <i class="fa fa-save"></i> Guardar la nota
                 </button>
@@ -89,7 +89,7 @@
     mixins: [navegacion],
 
     head: {
-      title: 'Agregar nueva nota'
+      title: 'Agregar una nueva nota'
     },
 
     data(){
@@ -100,7 +100,7 @@
         nota: '', // Todo el texto que este en el input para la nota a guardar
         inputNotaError: false,
 
-        seEscribio: false // Para a true cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar un mensaje
+        seEscribio: false // True cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar una alerta
       }
     },
 
@@ -110,11 +110,11 @@
 
         this.seEscribio = true;
 
-        if(titulo.length >= 0 && titulo.length <= 30) {
+        if(titulo.length >= 0 && titulo.length <= 50) {
           this.inputTituloError = false;
         }
 
-        else if(titulo.length > 30) {
+        else if(titulo.length > 50) {
           this.inputTituloError = true; // Muestra el mensaje de error, comunicando que supera limite
         }
       },
@@ -124,23 +124,23 @@
 
         this.seEscribio = true;
 
-        if(nota.length >= 0 && nota.length <= 1000) {
+        if(nota.length >= 0 && nota.length <= 5000) {
           this.inputNotaError = false;
         }
 
-        else if(nota.length > 1000) {
+        else if(nota.length > 5000) {
           this.inputNotaError = true; // Muestra el mensaje de error, comunicando que supera limite
         }
       },
 
       GuardarNota() {
+        // Estas variables seran de utilizada para enfocar el input / textarea, si contienen errores de superar los limites, o estar vacios.
         let inputTitulo = document.getElementById('inputTitulo');
         let inputNota = document.getElementById('inputNota');
-        // Estas variables seran de utilizada para enfocar el input, si los input contienen errores de superar los limites, o estar vacios.
 
+        // Y estas variable, seran para poder saber si el usuario no ingreso solo espacios en blanco
         let titulo = this.titulo.trim();
-        let nota = this.nota;
-        // Y estas variable, la primera guardará el valor del titulo sin espacios a la izquierda ni derecha, y la segunda solo de lo que contenta el textarea correspondiente a la nota
+        let nota = this.nota.trim();
 
         if(titulo == ''){
           inputTitulo.focus();
@@ -184,8 +184,8 @@
                   // Se crea un objeto que contendra los datos de la nota
                   let nuevaNota = 
                     { 
-                      titulo: this.titulo,
-                      nota: this.nota,
+                      titulo: this.titulo.trim(),
+                      nota: this.nota.trim(),
 
                       creacion: {
                         dia: diaF,
@@ -220,11 +220,13 @@
                   }
                   
                   else {
-                    // Ahora, si contiene algo esta variable, quiere decir qe hay notas guardadas. Por lo tanto, se deben agregar al principio arreglo de objetos anteriormente creado de la extraccion del localStorage
+                    // Ahora, si contiene algo esta variable, quiere decir que hay notas guardadas. Por lo tanto, se deben agregar al principio arreglo de objetos anteriormente creado de la extraccion del localStorage
+
+                    // ¿Por que al principio? asi se van ordenando desde la mas nueva, a la mas vieja
 
                     notasGuardadas.unshift(nuevaNota);  
 
-                    // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva nota agregada al array de objetos
+                    // Y ahora, solo queda convertirlo en string y guardar nuevamente, con la nueva nota agregada al arreglo de objetos
                     localStorage.setItem('notas', JSON.stringify(notasGuardadas));
 
                     this.IrA('/'); // Redireccionar a la vista inicial
@@ -238,8 +240,7 @@
       },
 
       Retroceder(){
-        // Si se escribio algo en los inputs, mostrara la alerta. Sino, solo regresara a la pagina anterior..
-
+        // Si se escribio algo en el input, o en el textarea, mostrara la alerta. Sino, solo regresara a la pagina anterior..
 
         if(this.seEscribio){
 
@@ -269,7 +270,7 @@
       ...mapState(['modoOscuro']),
 
       tamanoLetrasEnInputNota() {
-        return this.nota.length + " / 1000"
+        return this.nota.length + " / 5000"
       }
     }
   }

@@ -27,19 +27,19 @@
           <div class="formulario">
 
             <div class="formulario__grupo">
-              <label class="formulario__grupo-label" for="titulo">Título:</label>
+              <label class="formulario__grupo-label" for="inputTitulo">Título:</label>
               <input
                 @keyup="verificandoInputTitulo"
                 class="formulario__grupo-input" 
+                :class="{'formulario__grupo-input--error' : inputTituloError, 'formulario__grupo-input--oscuro' : modoOscuro}"
                 type="text" 
                 placeholder="Titulo para la nota" 
                 id="inputTitulo"
-                :class="{'formulario__grupo-input--error' : inputTituloError, 'formulario__grupo-input--oscuro' : modoOscuro}"
                 v-model="titulo" 
               >
   
               <template v-if="inputTituloError">
-                <div class="formulario__grupo-mensaje">Entre 1 a 30 caracteres</div>
+                <div class="formulario__grupo-mensaje">Entre 1 a 50 caracteres</div>
               </template>
             </div>
 
@@ -55,16 +55,16 @@
               
               <textarea 
                 @keyup="verificandoInputNota"
-                class="formulario__grupo-textarea" 
+                class="formulario__grupo-textarea"
+                :class="{'formulario__grupo-textarea--error' : inputNotaError, 'formulario__grupo-textarea--oscuro' : modoOscuro}" 
                 placeholder="Agregue el contenido para su nota" 
                 id="inputNota"
-                :class="{'formulario__grupo-textarea--error' : inputNotaError, 'formulario__grupo-textarea--oscuro' : modoOscuro}"
                 v-model="nota" 
               >
               </textarea>
             </div>
 
-            <div class="central">
+            <div class="centrar">
               <button class="boton boton--gris" @click="GuardarNota">
                 <i class="fa fa-save"></i> Guardar la nota
               </button>
@@ -86,7 +86,7 @@
     mixins: [navegacion],
 
     head: {
-      title: 'Editando Nota'
+      title: 'Editando esta nota'
     },
 
     data(){
@@ -97,7 +97,7 @@
         nota: '', // Todo el texto que este en el input para la nota a guardar
         inputNotaError: false,
 
-        seEscribio: false, // Para a true cuando se haya escrito algo en los inputs para permitir, si al dar en el clic en el boton de regresar, mostrar un mensaje
+        seEscribio: false, // True cuando se haya escrito algo en el input o textarea para permitir, si al dar en el clic en el boton de regresar, mostrar una alerta
 
         id: null, // Parametro. Nos ayuda a saber la posicion de esta nota en el arreglo de objetos.
       }
@@ -111,11 +111,11 @@
 
         this.seEscribio = true;
 
-        if(titulo.length >= 0 && titulo.length <= 30) {
+        if(titulo.length >= 0 && titulo.length <= 50) {
           this.inputTituloError = false;
         }
 
-        else if(titulo.length > 30) {
+        else if(titulo.length > 50) {
           this.inputTituloError = true; // Muestra el mensaje de error, comunicando que supera limite
         }
       },
@@ -125,23 +125,23 @@
 
         this.seEscribio = true;
 
-        if(nota.length >= 0 && nota.length <= 1000) {
+        if(nota.length >= 0 && nota.length <= 5000) {
           this.inputNotaError = false;
         }
 
-        else if(nota.length > 1000) {
+        else if(nota.length > 5000) {
           this.inputNotaError = true; // Muestra el mensaje de error, comunicando que supera limite
         }
       },
 
       GuardarNota() {
+        // Estas variables seran de utilizada para enfocar el input / textarea, si contienen errores de superar los limites, o estar vacios.
         let inputTitulo = document.getElementById('inputTitulo');
         let inputNota = document.getElementById('inputNota');
-        // Estas variables seran de utilizada para enfocar el input, si los input contienen errores de superar los limites, o estar vacios.
 
+        // Y estas variable, seran para poder saber si el usuario no ingreso solo espacios en blanco
         let titulo = this.titulo.trim();
-        let nota = this.nota;
-        // Y estas variable, la primera guardará el valor del titulo sin espacios a la izquierda ni derecha, y la segunda solo de lo que contenta el textarea correspondiente a la nota
+        let nota = this.nota.trim();
 
         if(titulo == ''){
           inputTitulo.focus();
@@ -188,8 +188,8 @@
                   // Se crea un objeto con los datos de la nota, mas los datos de la nota guardada proveniente del arreglo de objetos
                   let notaModificada = 
                     { 
-                      titulo: this.titulo,
-                      nota: this.nota,
+                      titulo: this.titulo.trim(),
+                      nota: this.nota.trim(),
 
                       creacion: {
                         dia: notasGuardadas[this.id].creacion.dia,
@@ -250,7 +250,6 @@
            .set('movable', false);
 
         } 
-
         else {
           this.Regresar(); // proviene del mixin
         }
@@ -263,7 +262,7 @@
       ...mapState(['modoOscuro']),
 
       tamanoLetrasEnInputNota() {
-        return this.nota.length + " / 1000"
+        return this.nota.length + " / 5000"
       }
     },
 

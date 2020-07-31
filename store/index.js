@@ -9,11 +9,6 @@ export const mutations = {
         state.notas = notasGuardadas; // Esta mutacion es usada en la vista inicial, para guardar todas las notas. Y asi, a traves de una propiedad computada, poder mostrar cuando una nota se elimine, ya que la mutacion "EliminarNota" elimina una nota, y modifica el state "notas"
     },
 
-    CambiarModo(state){
-        state.modoOscuro = !state.modoOscuro;
-        localStorage.setItem('notas-modo-oscuro', state.modoOscuro);
-    },
-
     EliminarNota(state, indice) {
         // Se extraen las notas y se utiliza JSON.parse para poder manipular el arreglo de objetos
         let localNotas = localStorage.getItem('notas');
@@ -37,6 +32,13 @@ export const mutations = {
 
             state.notas = notas; // Y se modifica el state "notas"
         }
+    },
+
+    //////////////////////////////////////////////////
+
+    CambiarModo(state){
+        state.modoOscuro = !state.modoOscuro;
+        localStorage.setItem('notas-modo-oscuro', state.modoOscuro);
     }
     
 }
