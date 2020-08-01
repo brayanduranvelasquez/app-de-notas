@@ -23,7 +23,7 @@ export default {
       { hid: 'description', name: 'description', content: 'App de notas, con operaciones basicas CRUD' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
     ]
   },
   /*
@@ -63,7 +63,6 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
     '@nuxtjs/pwa',
   ],
   /*
