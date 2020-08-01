@@ -2,7 +2,7 @@
   "name": "app-de-notas",
   "version": "1.0.0",
   "author": "Brayan Duran Velasquez",
-  "description": "App de notas, con operaciones basicas CRUD",
+  "description": "Una aplicacion para guardar sus notas.",
   "private": true,
   "scripts": {
     "dev": "nuxt",

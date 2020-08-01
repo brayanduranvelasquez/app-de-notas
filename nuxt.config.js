@@ -20,7 +20,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'author', name: 'author', content: 'Brayan Duran Velasquez' },
-      { hid: 'description', name: 'description', content: 'App de notas, con operaciones basicas CRUD' }
+      { hid: 'description', name: 'description', content: 'Una aplicacion para guardar sus notas' }
     ],
     link: [
       { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -33,6 +33,7 @@ export default {
     '@assets/scss/main.scss', // Estilos css
     '@assets/css/font/font.css', // tipografia
     '@assets/css/icons/css/all.css', // Iconos fontawesome
+    
     'alertifyjs/build/css/alertify.min.css', // AlertifyJS
     'alertifyjs/build/css/themes/bootstrap.min.css' // Tema para AlertifyJS
   ],
@@ -62,14 +63,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/pwa',
   ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {},
   /*
   ** Build configuration
   ** See https://nuxtjs.org/api/configuration-build/
@@ -82,16 +77,15 @@ export default {
   */
   pwa: {
     meta: {
-      title: 'App de Notas',
+      title: 'Notas',
       author: 'Brayan Duran Velasquez',
       description: 'Aplicacion para guardar sus notas',
-      display: 'fullscreen'
+      display: 'standalone'
     },
     manifest: {
-      name: 'Aplicacion de Notas',
-      short_name: 'App de Notas',
+      name: 'Notas',
+      short_name: 'Notas',
       lang: 'es',
     },
   }
 }
-
