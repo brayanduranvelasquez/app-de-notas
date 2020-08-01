@@ -20,7 +20,7 @@
       Modo(){
         if(this.modoOscuro){
           let body = document.body;
-          body.style.background = "#121212";
+          body.style.background = "#202020";
           body.style.color = "white";
         } 
         else {

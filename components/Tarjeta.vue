@@ -216,7 +216,7 @@
         }
 
         &__acciones {
-            border-left: 1px solid #ccc;
+            border-left: 1px solid $color-gris-terciario;
             grid-area: acciones;
             display: flex;
             flex-wrap: wrap;

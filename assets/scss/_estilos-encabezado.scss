@@ -57,12 +57,12 @@
         justify-content: flex-end;
 
         i {
-            color: #ccc;
+            color: $color-gris-terciario;
             font-size: calc(1em + 4px);
             margin-right: 16px;
 
             &:hover {
-                color: rgb(177, 177, 177);
+                color: rgb(150, 150, 150);
                 cursor: pointer;
             }
         
