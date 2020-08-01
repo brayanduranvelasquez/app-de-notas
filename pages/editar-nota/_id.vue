@@ -85,6 +85,8 @@
   export default {
     mixins: [navegacion],
 
+    middleware: 'existencia-nota',
+
     head: {
       title: 'Editando esta nota'
     },
