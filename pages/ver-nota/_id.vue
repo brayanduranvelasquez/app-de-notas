@@ -16,9 +16,22 @@
         class="encabezado__acciones"
         :class="{'encabezado__acciones--oscuro' : modoOscuro}"
       >
-        <i class="fa fa-pen" @click="EditarNota"></i>
-        <i class="fa fa-trash" @click="EliminandoNota"></i>
-        <i class="fa fa-copy" @click="CopiarNota" v-if="soporteCopiar"></i>
+        <i 
+          class="fa fa-pen" 
+          title="Editar nota"
+          @click="EditarNota">
+        </i>
+        <i 
+          class="fa fa-trash" 
+          title="Eliminar nota"
+          @click="EliminandoNota">
+        </i>
+        <i 
+          class="fa fa-copy" 
+          title="Copiar nota. Se guardara en el portapapeles"
+          @click="CopiarNota" 
+          v-if="soporteCopiar">
+        </i>
       </div>
     </header>
 

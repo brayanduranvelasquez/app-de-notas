@@ -14,6 +14,7 @@
         <i 
           :class="{'fa fa-sun' : modoOscuro, 'fa fa-moon' : !modoOscuro}"
           @click="CambiarModo"
+          title="Cambiar de modo Claro a Oscuro, y viceversa"
         ></i>
       </div> 
     </header>

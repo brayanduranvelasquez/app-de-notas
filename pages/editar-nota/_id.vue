@@ -16,7 +16,11 @@
         class="encabezado__acciones"
         :class="{'encabezado__acciones--oscuro' : modoOscuro}"
       >
-        <i class="fa fa-save" @click="GuardarNota"></i>
+        <i 
+          class="fa fa-save" 
+          title="Guardar cambios"
+          @click="GuardarNota">
+        </i>
       </div>
     </header>
 
@@ -66,7 +70,7 @@
 
             <div class="centrar">
               <button class="boton boton--gris" @click="GuardarNota">
-                <i class="fa fa-save"></i> Guardar la nota
+                <i class="fa fa-save"></i> Guardar cambios
               </button>
             </div>
           </div>

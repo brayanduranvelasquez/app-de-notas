@@ -56,19 +56,21 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        margin-right: 16px;
 
         i {
-            color: $color-gris-terciario;
+            color: $color-negro-terciario;
             font-size: calc(1em + 4px);
-            margin-right: 16px;
+            padding: 6px;
+            margin: 2px;
 
             &:hover {
-                color: rgb(150, 150, 150);
+                background-color: $color-gris;
                 cursor: pointer;
             }
         
             &:active {
-            color: rgb(129, 129, 129);
+                background-color: $color-gris-secundario;
             }
         }
     }
@@ -83,13 +85,5 @@
 .encabezado__acciones--oscuro{
     i {
         color: $color-blanco-secundario;
-
-        &:hover {
-            color: $color-blanco-terciario;
-        }
-          
-        &:active {
-            color: $color-blanco-terciario;
-        }
     }
 }
