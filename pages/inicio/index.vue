@@ -79,6 +79,14 @@
       title: 'Notas'
     },
 
+    data(){
+      return {
+        // Ver el metodo "Desplazamiento"
+        guardarValorDesplazamiento: false,
+        posicionScroll: 0,
+      }
+    },
+
     components: {
       Tarjeta
     },
@@ -87,12 +95,32 @@
       ...mapMutations(['CargarNotasAlStore', 'CambiarModo']),
 
       CargarNotas(){
+        // Obtiene todas las notas guardadas en el localStorage, las manda al store y ese mismo, sera el encargado de mostrarlo como un computed.
         let notasGuardadas = JSON.parse(localStorage.getItem('notas'));
 
         if(notasGuardadas != null){
           this.CargarNotasAlStore(notasGuardadas);
         } 
 
+      },
+
+      Desplazamiento(){
+        this.guardarValorDesplazamiento = true; 
+        // Para poder guardar el valor de la posicion de desplazamiento que tiene el usuario, para que al volver a esta vista, lo lleve exactamente a donde estaba.
+
+        window.addEventListener('scroll', () => {
+          if(this.guardarValorDesplazamiento){
+            // Se guarda el valor de la posicion en la sessionStorage
+            let desplazamiento = document.documentElement.scrollTop;
+            sessionStorage.setItem('desplazamiento', desplazamiento);
+          }
+        })
+
+        // Y este mismo metodo, se encargara de dirigir al usuario a la posicion de desplazamiento donde estaba. Ya que este metodo sera llamado en el ciclo de vida "mounted"
+        let desplazamiento = sessionStorage.getItem('desplazamiento');
+        if(desplazamiento){
+          window.scroll(0, desplazamiento);
+        }
       }
     },
 
@@ -107,6 +135,12 @@
 
     mounted(){
       this.CargarNotas();
+      this.Desplazamiento();
+    },
+
+    beforeDestroy(){ 
+      // False, para que en las otras rutas no guarde el valor del desplazamiento
+      this.guardarValorDesplazamiento = false;
     }
   }
 </script>
