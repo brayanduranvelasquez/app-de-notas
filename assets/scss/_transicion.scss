@@ -47,3 +47,14 @@
     opacity: 0;
     transform: translateX(-20px);
   }
+
+  ///////////////////////////////////////////
+
+  .transicion-aparecer-enter {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  .transicion-aparecer-enter-active {
+    transition: 0.2s all;
+  }

@@ -16,6 +16,11 @@
           @click="CambiarModo"
           title="Cambiar de modo Claro a Oscuro, y viceversa"
         ></i>
+        <i 
+          class="fa fa-info-circle" 
+          title="Acerca de"
+          @click="IrA('/inicio/acerca-de')"
+        ></i>
       </div> 
     </header>
 
