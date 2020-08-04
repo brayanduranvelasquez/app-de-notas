@@ -241,6 +241,7 @@
                   this.CargarNotasAlStore(notasGuardadas);
 
                   alertify.success('Se ha editado la nota');
+                  sessionStorage.setItem('desplazamiento', 0); 
 
                   // Y ahora se dirige a ver la nota, y como esta en la primera posicion, siempre va a la posicion 0
                   this.IrA(`/ver-nota/${btoa(0)}`);

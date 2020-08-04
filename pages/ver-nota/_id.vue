@@ -125,7 +125,8 @@
           'Eliminar', // Titulo
           mensaje, // Mensaje
           () => { 
-            this.EliminarNota(this.id); 
+            this.EliminarNota(this.id);
+            sessionStorage.setItem('desplazamiento', 0); 
             this.IrA('/');
             alertify.success("Nota eliminada");
           }, // Presionar que si

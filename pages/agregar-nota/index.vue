@@ -250,6 +250,7 @@
                   }
 
                   alertify.success('Se ha guardado la nota');
+                  sessionStorage.setItem('desplazamiento', 0);
                    
                 }
 
