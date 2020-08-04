@@ -13,18 +13,14 @@
     &--gris {
         background: $color-gris;
         color: rgb(71, 71, 71);
+        cursor: pointer;
 
         i {
             color: rgb(71, 71, 71);
         }
 
-        &:hover {
-            background: rgb(189, 189, 189);
-            cursor: pointer;
-        }
-
         &:active {
-            background: rgb(160, 160, 160);
+            background: rgb(189, 189, 189);
         }
     }
 }

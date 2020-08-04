@@ -14,28 +14,20 @@
     &--positivo {
         background: $color-rojo;
         color: $color-blanco;
-
-        &:hover {
-            background: $color-rojo-secundario;
-            cursor: pointer;
-        }
+        cursor: pointer;
 
         &:active {
-            background: $color-rojo-terciario;
+            background: $color-rojo-secundario;
         }
     }
 
     &--negativo {
         background: $color-gris;
         color: $color-negro;
-
-        &:hover {
-            background: $color-gris-secundario;
-            cursor: pointer;
-        }
+        cursor: pointer;
 
         &:active {
-            background: $color-gris-terciario;
+            background: $color-gris-secundario;
         }
     }
 

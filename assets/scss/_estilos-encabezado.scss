@@ -23,10 +23,6 @@
             cursor: pointer;
         }
 
-        &:active {
-            background: $color-gris-terciario;
-        }
-
         i {
             font-size: calc(1em + 6px);
         }
@@ -63,14 +59,10 @@
             font-size: calc(1em + 4px);
             padding: 6px;
             margin: 2px;
+            cursor: pointer;
 
-            &:hover {
-                background-color: $color-gris;
-                cursor: pointer;
-            }
-        
             &:active {
-                background-color: $color-gris-secundario;
+                background-color: $color-gris;
             }
         }
     }

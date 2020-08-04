@@ -131,15 +131,11 @@
           margin: 0px 4px;
           font-size: 2.2em;
           transition: all 0.3s;
-
-          &:hover {
-            color: $color-gris-secundario;
-            transform: scale(1.1);
-            cursor: pointer;
-          }
+          cursor: pointer;
 
           &:active {
-            color: $color-gris;
+            color: $color-gris-secundario;
+            transform: scale(1.1);
           }
         }
       }
@@ -155,14 +151,10 @@
           text-align: center;
           padding: 16px;
           margin: 4px 0;
+          cursor: pointer;
 
-          &:hover {
-            background-color: $color-gris;
-            cursor: pointer;
-          }
-        
           &:active {
-            background-color: $color-gris-secundario;
+            background-color: $color-gris;
           }
         }
         
@@ -177,13 +169,9 @@
       font-size: 2em;
       transition: all 0.3s;
 
-      &:hover {
-         color: $color-gris-secundario;
+      &:active {
+        color: $color-gris-secundario;
         transform: scale(1.1);
-      }
-
-       &:active {
-        color: $color-blanco-secundario;
       }
     }
   }
