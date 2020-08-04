@@ -60,10 +60,6 @@
     border-radius: 40px;
   }
 
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
     transition: 0.3s all;
     background: #fff;

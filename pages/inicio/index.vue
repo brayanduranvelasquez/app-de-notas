@@ -145,7 +145,11 @@
 
     mounted(){
       this.CargarNotas();
-      this.Desplazamiento();
+
+      setTimeout(() => {
+        this.Desplazamiento();
+      }, 100); // Para que un milisegundo despues, de haber montado el DOM, ya este cargado todo el scroll que se deba hacer.
+      
     },
 
     beforeDestroy(){ 

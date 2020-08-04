@@ -148,25 +148,37 @@
 
         if(titulo == ''){
           inputTitulo.focus();
-          window.scroll(0, 0);
+          window.scroll({
+            top: 1,
+            behavior: "smooth"
+          });
           alertify.error('No escribió un titulo para la nota');
         }
 
         else if(this.inputTituloError){
           inputTitulo.focus();
-          window.scroll(0, 0);
+          window.scroll({
+            top: 1,
+            behavior: "smooth"
+          });
           alertify.error('Excede los límites de caracteres para el titulo');
         }
 
         else if(nota == ''){
           inputNota.focus();
-          window.scroll(0, 100);
+          window.scroll({
+            top: 100,
+            behavior: "smooth"
+          });
           alertify.error('No escribió la nota a guardar');
         }
 
         else if(this.inputNotaError){
           inputNota.focus();
-          window.scroll(0, 100);
+          window.scroll({
+            top: 100,
+            behavior: "smooth"
+          });
           alertify.error('Excede los límites de caracteres permitidos');
         }
 
