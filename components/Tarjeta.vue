@@ -87,7 +87,10 @@
                     }
 
                     else {
-                        return `${this.modificacion.dia} / ${this.modificacion.mes} / ${this.modificacion.año}`
+                        let dia = (this.modificacion.dia < 10) ? '0' + this.modificacion.dia : this.modificacion.dia;
+                        let mes = (this.modificacion.mes < 10) ? '0' + this.modificacion.mes : this.modificacion.mes;
+
+                        return `${dia} / ${mes} / ${this.modificacion.año}`
                     }
                 }
 
@@ -108,7 +111,10 @@
                     }
 
                     else {
-                        return `${this.creacion.dia} / ${this.creacion.mes} / ${this.creacion.año}`
+                        let dia = (this.creacion.dia < 10) ? '0' + this.creacion.dia : this.creacion.dia;
+                        let mes = (this.creacion.mes < 10) ? '0' + this.creacion.mes : this.creacion.mes;
+
+                        return `${dia} / ${mes} / ${this.creacion.año}`
                     }
                 }
                 

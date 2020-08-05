@@ -182,11 +182,14 @@
         }
 
         else if(dia == this.nota.creacion.dia+1){
-            return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
+          return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else {
-            return `${this.nota.creacion.dia} / ${this.nota.creacion.mes} / ${this.nota.creacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
+          let dia = (this.nota.creacion.dia < 10) ? '0' + this.nota.creacion.dia : this.nota.creacion.dia;
+          let mes = (this.nota.creacion.mes < 10) ? '0' + this.nota.creacion.mes : this.nota.creacion.mes;
+
+          return `${dia} / ${mes} / ${this.nota.creacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
       },
@@ -207,11 +210,14 @@
         }
 
         else if(dia == this.nota.modificacion.dia+1){
-            return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
+          return `Ayer - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
         else {
-            return `${this.nota.modificacion.dia} / ${this.nota.modificacion.mes} / ${this.nota.modificacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
+          let dia = (this.nota.modificacion.dia < 10) ? '0' + this.nota.modificacion.dia : this.nota.modificacion.dia;
+          let mes = (this.nota.modificacion.mes < 10) ? '0' + this.nota.modificacion.mes : this.nota.modificacion.mes;
+
+          return `${dia} / ${mes} / ${this.nota.modificacion.año} - ${horaProcesada}:${minuto}${amOPm}.`
         }
 
       },
