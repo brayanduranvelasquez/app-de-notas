@@ -2,7 +2,7 @@
 
 Administre sus notas... Esta aplicación utiliza la memoria de su navegador para almacenarlas de manera local. Por lo tanto, su información no es enviada a ningún otro sitio externo.
 
-[Ir a la aplicación web](https://brayandvelasquez.github.io/app-de-notas/)
+[Ir a la aplicación web](https://brayanduranvelasquez.github.io/app-de-notas/)
 
 ### ¿Como se almacenan?
 
