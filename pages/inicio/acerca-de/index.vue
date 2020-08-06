@@ -37,13 +37,13 @@
           class="acerca-de__contenido-vinculos"
           :class="{'acerca-de__contenido-vinculos--oscuro' : modoOscuro}"
         >
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="https://facebook.com/BrayanDuranVelasquez"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.linkedin.com/in/brayanduranvelasquez/"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/brayanduranvelasquez"><i class="fab fa-github"></i></a>
         </section> 
 
         <section class="acerca-de__contenido-repositorio">
-          <a href="#">
+          <a href="https://github.com/brayanduranvelasquez/app-de-notas">
             Ir al repositorio para más informacion
           </a>
         </section>
