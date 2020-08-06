@@ -11,6 +11,13 @@ export default {
   */
   target: 'static',
   /*
+  ** Nuxt Route
+  **
+  */
+  router: {
+    base: '/app-de-notas/'
+  },
+  /*
   ** Headers of the page
   ** See https://nuxtjs.org/api/configuration-head
   */
