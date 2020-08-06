@@ -1,4 +1,4 @@
-# Aplicacion web para guardas notas
+# Aplicacion web para guardar notas
 
 Administre sus notas... Esta aplicación utiliza la memoria de su navegador para almacenarlas de manera local. Por lo tanto, su información no es enviada a ningún otro sitio externo.
 
