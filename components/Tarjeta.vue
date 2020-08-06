@@ -8,7 +8,7 @@
                 <p>{{ titulo }}</p>
             </div>
             <div class="tarjeta__contenido-cuerpo">
-                {{ NotaCorta }} <!-- computed -->
+                {{ nota }}
             </div> 
             <div class="tarjeta__contenido-pie ">
                 <i class="fa fa-clock"></i><p> {{ FechaCreacionOModificacion }}  </p>
@@ -49,20 +49,7 @@
         },
 
         computed: {
-            ...mapState(['modoOscuro']),
-
-            NotaCorta(){
-                let nota = this.nota;
-
-                if(nota.length > 100){
-                    return nota.substring(0, 100) + "...";
-                } 
-
-                else {
-                    return nota;
-                }
-                
-            },    
+            ...mapState(['modoOscuro']),   
 
             FechaCreacionOModificacion(){
                 // Verifica primero si existe el dia modificado. De ser asi, mostrara la ultima modificacion. Sino, mostrara la fecha de creacion. Tambien comprobara si el dia el igual o si es otro dia, para mostrar un mensaje como "Hoy", y "Ayer" (referencia a cuando fue creada/modificada)
@@ -192,14 +179,17 @@
                 font-size: calc(1em + 4px);
                 font-weight: 600;
                 margin: 10px 12px;
-                word-break: break-all;
+                word-wrap: break-word;
+                white-space: pre-line;
             }
 
             &-cuerpo {
                 grid-area: nota-cuerpo;
                 font-size: 1em;
                 margin: 6px 12px;
-                word-break: break-all;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
             }
 
             &-pie {
@@ -210,7 +200,7 @@
                 grid-area: nota-pie;
                 text-align: right;
                 font-size: calc(1em - 4px);
-                margin: 6px 12px;
+                margin: 8px 12px;
                 word-break: break-all;
 
                 p, i {
