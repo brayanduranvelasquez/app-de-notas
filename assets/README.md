@@ -1,7 +1,5 @@
 # ASSETS
 
-**This directory is not required, you can delete it if you don't want to use it.**
+Este directorio contiene archivos no compilados como LESS, SASS o JavaScript. Tambien imagenes, videos, etc.
 
-This directory contains your un-compiled assets such as LESS, SASS, or JavaScript.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#webpacked).
+Mas informacion a cerca del uso de este directorio en [la documentacion](https://nuxtjs.org/guide/assets#webpacked).

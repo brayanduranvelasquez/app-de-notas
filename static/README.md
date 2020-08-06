@@ -1,11 +1,8 @@
 # STATIC
 
-**This directory is not required, you can delete it if you don't want to use it.**
+Este directorio contiene sus archivos estaticos.
+Cada archivo dentro de este directorio es mapeado a `/`.
 
-This directory contains your static files.
-Each file inside this directory is mapped to `/`.
-Thus you'd want to delete this README.md before deploying to production.
+Ejemplo: `/static/robots.txt` es mapeado como `/robots.txt`.
 
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/guide/assets#static).
+Mas informacion a cerca del uso de este directorio en [la documentacion](https://nuxtjs.org/guide/assets#static).
