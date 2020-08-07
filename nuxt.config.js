@@ -30,7 +30,7 @@ export default {
       { hid: 'description', name: 'description', content: 'Una aplicacion para guardar sus notas' }
     ],
     link: [
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+      { rel: 'icon', type: 'image/png', href: '/app-de-notas/favicon.png' },
     ]
   },
   /*
