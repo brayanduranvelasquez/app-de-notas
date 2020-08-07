@@ -19,6 +19,8 @@
     "nuxt": "^2.13.0"
   },
   "devDependencies": {
-    "push-dir": "^0.4.1"
+    "node-sass": "^4.14.1",
+    "push-dir": "^0.4.1",
+    "sass-loader": "^8.0.2"
   }
 }
