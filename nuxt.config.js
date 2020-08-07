@@ -87,7 +87,8 @@ export default {
       title: 'Notas',
       author: 'Brayan Duran Velasquez',
       description: 'Aplicacion para guardar sus notas',
-      display: 'standalone'
+      display: 'standalone',
+      theme_color: '#ffffff'
     },
     manifest: {
       name: 'Notas',
