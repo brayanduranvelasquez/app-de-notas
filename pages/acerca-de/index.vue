@@ -25,7 +25,7 @@
           </article>
 
           <article class="acerca-de__contenido-detalles-descripcion">
-            <p>Administre sus notas. Revise, guarde, edite y elimine. Esta aplicación utiliza la memoria de su navegador para almacenarlas de manera local. Por lo tanto, su información no es enviada a ningun otro sitio.</p>
+            <p>Administre sus notas. Esta aplicación utiliza la memoria de su navegador para almacenarlas de manera local. Por lo tanto, su información no es enviada a ningun otro sitio.</p>
           </article>
 
           <article class="acerca-de__contenido-detalles-creacion">
@@ -88,6 +88,7 @@
     font-size: 16px;
 
     &__contenido {
+      font-size: 1em;
       color: inherit;
       background: inherit;
       padding-top: 65px;
@@ -108,6 +109,7 @@
 
       &-detalles {
         margin: 2px 10px;
+        font-size: 1em;
 
         &-version{
           margin-bottom: 6px;
@@ -125,6 +127,7 @@
 
       &-vinculos{
         text-align: center;
+        font-size: 1em;
 
         i {
           color: $color-negro-secundario;
@@ -142,6 +145,7 @@
 
       &-repositorio {
         text-align: center;
+        font-size: 1em;
 
         a {
           display: inline-block;
@@ -173,6 +177,12 @@
         color: $color-gris-secundario;
         transform: scale(1.1);
       }
+    }
+  }
+
+  @media screen and (min-width: 750px){
+    .acerca-de {
+      font-size: 20px;
     }
   }
 
