@@ -50,9 +50,9 @@ Alto: 380px.
 
 ### Modo nocturno
 
-La aplicación web contiene un boton para cambiar el aspecto de la misma, y es para cambiarlo a algo llamado **modo oscuro**. Permitirá que el color de fondo y colores de las letras, sean más perceptibles cuando estamos en la oscuridad. 
+La aplicación web contiene un boton para cambiar el aspecto de la misma, y es para cambiarlo a algo llamado **modo nocturno**. Permitirá que el color de fondo y colores de las letras, sean más perceptibles cuando estamos en la oscuridad. 
 
-Si el usuario utiliza la configuracion **modo oscuro** de esta aplicación web, quedará guardado en la memoria del navegador, y asi, la proxima vez que el usuario ingrese, podrá obtener su última configuración. 
+Si el usuario utiliza la configuracion **modo nocturno** de esta aplicación web, quedará guardado en la memoria del navegador, y asi, la proxima vez que el usuario ingrese, podrá obtener su última configuración. 
 
 ### Versiones
 
