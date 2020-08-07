@@ -59,6 +59,7 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    '@nuxtjs/pwa',
   ],
   /*
   ** Nuxt.js bar loading
@@ -87,13 +88,14 @@ export default {
       title: 'Notas',
       author: 'Brayan Duran Velasquez',
       description: 'Aplicacion para guardar sus notas',
-      display: 'standalone',
-      theme_color: '#ffffff'
     },
     manifest: {
-      name: 'Notas',
-      short_name: 'Notas',
+      name: 'Mis notas',
+      short_name: 'Mis notas',
       lang: 'es',
+      display: 'standalone',
+      theme_color: '#fff',
+      background_color: '#fff'
     },
   }
 }
